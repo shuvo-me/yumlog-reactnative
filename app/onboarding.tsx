@@ -21,7 +21,6 @@ const OnboardingScreen: React.FC = () => {
   const insets = useSafeAreaInsets();
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    console.log({ event });
     const scrollOffset = event.nativeEvent.contentOffset.x;
     const index = Math.round(scrollOffset / SCREEN_WIDTH);
     if (index !== activeIndex) {
@@ -131,7 +130,6 @@ const OnboardingScreen: React.FC = () => {
                 marginTop="$4"
                 lineHeight={24}
                 opacity={0.8}
-                // textAlign="center"
                 numberOfLines={2}
               >
                 Track every dish you taste, rate your favorites, and map your
@@ -153,7 +151,7 @@ const OnboardingScreen: React.FC = () => {
               backgroundColor={
                 i === activeIndex ? "$primary" : "rgba(255,255,255,0.2)"
               }
-              // animation={'lazy'}
+              animation={"smooth"}
             />
           ))}
         </XStack>

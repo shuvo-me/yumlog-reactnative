@@ -1,4 +1,5 @@
 
+import { createAnimations } from '@tamagui/animations-react-native';
 import { createFont, createTamagui, createTokens } from '@tamagui/core';
 import { shorthands } from '@tamagui/shorthands';
 import { themes, tokens } from '@tamagui/themes';
@@ -54,6 +55,39 @@ const interFont = createFont({
   },
 });
 
+const animations = createAnimations({
+  fast: {
+    damping: 20,
+    mass: 1.2,
+    stiffness: 250,
+  },
+  medium: {
+    damping: 10,
+    mass: 0.9,
+    stiffness: 100,
+  },
+  slow: {
+    damping: 20,
+    stiffness: 60,
+  },
+  lazy: {
+    type: 'timing',
+    damping: 20,   
+    stiffness: 60,  
+  },
+  quick: {
+    type: 'spring',
+    damping: 20,
+    mass: 1,
+    stiffness: 250,
+  },
+  smooth: {
+    type: 'timing',
+    duration: 300, 
+    style: 'ease-in-out',
+  },
+})
+
 const customTokens = createTokens({
   ...tokens,
   color: {
@@ -61,8 +95,8 @@ const customTokens = createTokens({
     primary: '#f26c0d',
     backgroundDark: '#221710',
     neutralMuted: '#54453b',
-    gray10: '#a1a1aa', // Added gray10 as requested
-    gray11: '#d4d4d8', // Added gray11 for secondary text
+    gray10: '#a1a1aa', 
+    gray11: '#d4d4d8', 
   },
   space: {
     ...tokens.space,
@@ -84,6 +118,7 @@ const config = createTamagui({
   themes,
   tokens: customTokens,
   shorthands,
+  animations
 });
 
 export type AppConfig = typeof config;
