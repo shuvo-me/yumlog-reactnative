@@ -23,6 +23,7 @@ export default function RootLayout() {
         <Theme name={colorScheme === "dark" ? "dark" : "light"}>
           <Stack>
             <Stack.Screen name="onboarding" options={{ headerShown: false }} />
+            <Stack.Screen name="sign-up" options={{ headerShown: false }} />
             <Stack.Screen name="(protected)" options={{ headerShown: false }} />
             <Stack.Screen
               name="modal"

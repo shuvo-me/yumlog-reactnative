@@ -1,5 +1,6 @@
 import { HERO_IMAGE_URL, SCREEN_WIDTH, SLIDES } from "@/constants";
 import { ArrowRight, Utensils } from "@tamagui/lucide-icons";
+import { Link } from "expo-router";
 import React, { useState } from "react";
 import { NativeScrollEvent, NativeSyntheticEvent } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -175,9 +176,11 @@ const OnboardingScreen: React.FC = () => {
           <Text color="$gray10" fontSize={14}>
             Already have an account?
           </Text>
-          <Text color="white" fontSize={14} fontWeight="800">
-            Log In
-          </Text>
+          <Link href={"/sign-up"}>
+            <Text color="white" fontSize={14} fontWeight="800">
+              Log In
+            </Text>
+          </Link>
         </XStack>
       </YStack>
     </YStack>
