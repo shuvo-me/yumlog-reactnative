@@ -1,50 +1,43 @@
-# Welcome to your Expo app 👋
+# YumLog
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+YumLog is a food discovery app that allows users to track their culinary adventures. Users can explore curated collections of the best hidden gems in their city, rate their favorite dishes, and connect with fellow foodies.
 
-## Get started
+## Features
 
-1. Install dependencies
+- Discover new flavors and hidden gems in your city
+- Track every dish you taste and rate your favorites
+- Connect with fellow foodies and share your latest culinary finds
 
-   ```bash
-   npm install
-   ```
+## Installation
 
-2. Start the app
+1. Clone the repository: `git clone https://github.com/your-username/YumLog.git`
+2. Install dependencies: `npm install`
+3. Start the app: `npm start`
 
-   ```bash
-   npx expo start
-   ```
+## Usage
 
-In the output, you'll find options to open the app in a
+1. Open the app in your preferred development environment (e.g., Expo Go)
+2. Sign up or log in to your account
+3. Explore curated collections of the best hidden gems in your city
+4. Track every dish you taste and rate your favorites
+5. Connect with fellow foodies and share your latest culinary finds
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Contributing
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+We welcome contributions from the community! If you'd like to contribute to YumLog, please follow these steps:
 
-## Get a fresh project
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature/your-feature`
+3. Make your changes and commit them: `git commit -m 'Add feature XYZ'`
+4. Push to the branch: `git push origin feature/your-feature`
+5. Open a pull request
 
-When you're ready, run:
+## License
 
-```bash
-npm run reset-project
-```
+YumLog is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Acknowledgements
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- [Expo](https://expo.dev/) for providing the development environment
+- [Tamagui](https://tamagui.dev/) for the UI components
+- [Picsum](https://picsum.photos/) for the placeholder images
