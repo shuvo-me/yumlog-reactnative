@@ -17,7 +17,7 @@ import {
  */
 const FoodCard = styled(YStack, {
   name: 'FoodCard',
-  backgroundColor: '$background', 
+  backgroundColor: '$backgroundSecondary', 
   borderRadius: '$4',
   overflow: 'hidden',
   marginBottom: '$4',
@@ -44,7 +44,7 @@ export default function HomeScreen() {
   const theme = useTheme();
 
   return (
-    <YStack f={1} backgroundColor="$backgroundDark">
+    <YStack f={1} backgroundColor="$background">
       {/* Custom Header */}
       <XStack 
         paddingTop="$8" // Adjust for Notch/Status Bar

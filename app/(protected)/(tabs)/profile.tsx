@@ -1,26 +1,26 @@
 import {
-    BookOpen,
-    ChevronRight,
-    Heart,
-    Settings,
-    Share2,
+  BookOpen,
+  ChevronRight,
+  Heart,
+  Settings,
+  Share2,
 } from "@tamagui/lucide-icons";
 import React from "react";
 import {
-    Avatar,
-    Button,
-    ScrollView,
-    styled,
-    Text,
-    XStack,
-    YStack,
+  Avatar,
+  Button,
+  ScrollView,
+  styled,
+  Text,
+  XStack,
+  YStack,
 } from "tamagui";
 
 // --- Styled Components ---
 
 const ProfileCard = styled(YStack, {
-  backgroundColor: "$background", // Inherits from theme, maps to your card-dark
-  borderRadius: "$4",
+  backgroundColor: "$cardBackground", // Inherits from theme, maps to your card-dark
+  borderRadius: "$6",
   padding: "$5",
   ai: "center",
   jc: "center",
@@ -32,7 +32,7 @@ const ProfileCard = styled(YStack, {
 });
 
 const MenuButton = styled(Button, {
-  backgroundColor: "$background",
+  backgroundColor: "$cardBackground",
   height: 80,
   borderRadius: "$4",
   paddingHorizontal: "$4",
@@ -46,7 +46,7 @@ const MenuButton = styled(Button, {
 
 export default function ProfileScreen() {
   return (
-    <YStack f={1} backgroundColor="$backgroundDark">
+    <YStack f={1} backgroundColor="$background">
       {/* Header */}
       <XStack
         paddingTop={60}
