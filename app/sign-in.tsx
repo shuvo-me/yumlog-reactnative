@@ -3,16 +3,16 @@ import { Link } from "expo-router";
 import React, { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
-    Button,
-    H1,
-    Image,
-    Input,
-    ScrollView,
-    Separator,
-    Text,
-    XStack,
-    YStack,
-    ZStack,
+  Button,
+  H1,
+  Image,
+  Input,
+  ScrollView,
+  Separator,
+  Text,
+  XStack,
+  YStack,
+  ZStack,
 } from "tamagui";
 import { LinearGradient } from "tamagui/linear-gradient";
 
@@ -26,7 +26,7 @@ const SignInScreen = () => {
 
   return (
     // Base container with background color
-    <YStack f={1} bg="$backgroundDark">
+    <YStack f={1} bg="$background">
       {/* 1. Background Image Section */}
       <ZStack position="absolute" top={0} left={0} right={0} height="45%">
         <Image
@@ -48,7 +48,7 @@ const SignInScreen = () => {
           left={0}
           right={0}
           height={200}
-          colors={["$backgroundDark", "rgba(34, 21, 16, 0.8)", "transparent"]}
+          colors={["$background", "rgba(34, 21, 16, 0.8)", "transparent"]}
           start={[0.5, 1]}
           end={[0.5, 0]}
         />

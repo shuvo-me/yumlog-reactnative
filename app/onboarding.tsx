@@ -30,7 +30,7 @@ const OnboardingScreen: React.FC = () => {
   };
 
   return (
-    <YStack f={1} backgroundColor="$backgroundDark" overflow="hidden">
+    <YStack f={1} backgroundColor="$background" overflow="hidden">
       {/* 1. Background Section */}
       <ZStack position="absolute" top={0} left={0} width="100%" height="75%">
         <Image
@@ -51,7 +51,7 @@ const OnboardingScreen: React.FC = () => {
         {/* BOTTOM BLEND: Native compatible */}
         <LinearGradient
           fullscreen
-          colors={["transparent", "rgba(34, 23, 16, 0.8)", "$backgroundDark"]}
+          colors={["transparent", "rgba(34, 23, 16, 0.8)", "$background"]}
           locations={[0.5, 0.8, 1]}
           start={[0.5, 0]}
           end={[0.5, 1]}

@@ -1,3 +1,7 @@
+![Screenshot 1](screenshots/1.png)
+![Screenshot 2](screenshots/2.png)
+![Screenshot 3](screenshots/3.png)
+
 # YumLog
 
 YumLog is a food discovery app that allows users to track their culinary adventures. Users can explore curated collections of the best hidden gems in their city, rate their favorite dishes, and connect with fellow foodies.
@@ -21,6 +25,8 @@ YumLog is a food discovery app that allows users to track their culinary adventu
 3. Explore curated collections of the best hidden gems in your city
 4. Track every dish you taste and rate your favorites
 5. Connect with fellow foodies and share your latest culinary finds
+
+
 
 ## Contributing
 
