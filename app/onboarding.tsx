@@ -176,7 +176,7 @@ const OnboardingScreen: React.FC = () => {
           <Text color="$gray10" fontSize={14}>
             Already have an account?
           </Text>
-          <Link href={"/sign-up"}>
+          <Link href={"/sign-in"}>
             <Text color="white" fontSize={14} fontWeight="800">
               Log In
             </Text>

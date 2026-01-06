@@ -1,7 +1,7 @@
 import { Redirect, Stack } from "expo-router";
 import React from "react";
 
-const isLoggedIn = false;
+const isLoggedIn = true;
 
 export default function _layout() {
   if (!isLoggedIn) {

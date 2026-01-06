@@ -3,23 +3,23 @@ import { Link } from "expo-router";
 import React, { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
-  Button,
-  H1,
-  Image,
-  Input,
-  ScrollView,
-  Separator,
-  Text,
-  XStack,
-  YStack,
-  ZStack,
+    Button,
+    H1,
+    Image,
+    Input,
+    ScrollView,
+    Separator,
+    Text,
+    XStack,
+    YStack,
+    ZStack,
 } from "tamagui";
 import { LinearGradient } from "tamagui/linear-gradient";
 
 const FOOD_IMAGE_URL =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuAuI3Wh3MfwfbbWGKNuxIRWZ4m7eymDdZAz5cP3nZ_6fhbPC2UpFP3Xd1lcHaPBTwigGNTBTKYItlb3km2espnnIHmJa0963iDOM6uwAvcPHCINx4oYTt7CCJMJNYzZuemuI6ayuj9Ttd9Vwvs6NJ2shvrKlkUMLi8PvMBvmIqEUU5FSXDPha8XjVKKqWzcz61Cr_GK-ZAaoGdNjLPX2HcobJAfXoAYuk9eufq02Tfp3gyr0vUDTUvR_FiymNxWu0JHpTSzWwBKdg";
 
-const SignUpScreen = () => {
+const SignInScreen = () => {
   const insets = useSafeAreaInsets();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -77,10 +77,10 @@ const SignUpScreen = () => {
         <YStack f={1} jc="flex-end" px="$6" pb={insets.bottom + 20} pt={100}>
           <YStack mb="$8">
             <H1 color="white" fow="800" fontSize="$9" ls={-1}>
-              Create Account
+              Sign In
             </H1>
             <Text color="$gray10" fontSize="$4" fow="500">
-              Sign up to start your culinary journey.
+              Sign In to start your culinary journey.
             </Text>
           </YStack>
 
@@ -126,7 +126,7 @@ const SignUpScreen = () => {
               pressStyle={{ scale: 0.98, opacity: 0.9 }}
             >
               <Text color="white" fow="700" fontSize="$4">
-                Sign Up
+                Sign In
               </Text>
             </Button>
           </YStack>
@@ -173,10 +173,10 @@ const SignUpScreen = () => {
 
           {/* Footer Link */}
           <XStack jc="center" mt="$10" gap="$2">
-            <Text color="$gray10">Already have an account?</Text>
-            <Link href={"/sign-in"}>
+            <Text color="$gray10">Don't have an account?</Text>
+            <Link href={"/sign-up"}>
               <Text color="$primary" fow="700">
-                Sign In
+                Sign up
               </Text>
             </Link>
           </XStack>
@@ -186,4 +186,4 @@ const SignUpScreen = () => {
   );
 };
 
-export default SignUpScreen;
+export default SignInScreen;
