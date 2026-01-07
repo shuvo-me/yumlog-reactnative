@@ -1,6 +1,8 @@
-![Screenshot 1](screenshots/1.png)
-![Screenshot 2](screenshots/2.png)
-![Screenshot 3](screenshots/3.png)
+<p align="center">
+  <img src="screenshots/1.png" width="200" />
+  <img src="screenshots/2.png" width="200" /> 
+  <img src="screenshots/3.png" width="200" />
+</p>
 
 # YumLog
 
