@@ -1,5 +1,5 @@
 import { ListFilter, MapPin, Plus, Search, Star } from "@tamagui/lucide-icons";
-import { useRouter } from "expo-router";
+import { router, useRouter } from "expo-router";
 import React from "react";
 import {
   Button,
@@ -110,6 +110,7 @@ export default function HomeScreen() {
         icon={<Plus size={32} color="white" />}
         elevation={5}
         pressStyle={{ scale: 0.9, opacity: 0.9 }}
+        onPress={() => router.push("/add")}
       />
     </YStack>
   );

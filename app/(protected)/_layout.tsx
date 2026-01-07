@@ -18,6 +18,13 @@ export default function _layout() {
           animation: "slide_from_right", // Smooth mobile transition
         }}
       />
+      <Stack.Screen
+        name="add"
+        options={{
+          headerShown: false,
+          animation: "slide_from_right", // Smooth mobile transition
+        }}
+      />
     </Stack>
   );
 }
