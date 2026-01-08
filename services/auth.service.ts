@@ -1,13 +1,14 @@
+import { SignUpSchemaType } from "@/app/sign-up";
 import {
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    updateProfile
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile
 } from "firebase/auth";
 import { auth } from "../lib/firebase";
 
 // Register a new user
-export const registerUser = async (email: string, password:string) => {
+export const registerUser = async ({email, password}: SignUpSchemaType) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     // Optionally add the user's name to their profile
