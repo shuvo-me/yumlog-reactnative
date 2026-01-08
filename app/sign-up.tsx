@@ -1,6 +1,8 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Apple, ArrowLeft, Chrome } from "@tamagui/lucide-icons";
 import { Link } from "expo-router";
 import React, { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Button,
@@ -9,12 +11,21 @@ import {
   Input,
   ScrollView,
   Separator,
+  Spinner,
   Text,
   XStack,
   YStack,
   ZStack,
 } from "tamagui";
 import { LinearGradient } from "tamagui/linear-gradient";
+import { z } from "zod";
+
+const signUpSchema = z.object({
+  email: z.email("Please enter a valid email!"),
+  password: z.string().min(6, "Password must be at least 6 characters long!"),
+});
+
+type SignUpSchemaType = z.infer<typeof signUpSchema>;
 
 const FOOD_IMAGE_URL =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuAuI3Wh3MfwfbbWGKNuxIRWZ4m7eymDdZAz5cP3nZ_6fhbPC2UpFP3Xd1lcHaPBTwigGNTBTKYItlb3km2espnnIHmJa0963iDOM6uwAvcPHCINx4oYTt7CCJMJNYzZuemuI6ayuj9Ttd9Vwvs6NJ2shvrKlkUMLi8PvMBvmIqEUU5FSXDPha8XjVKKqWzcz61Cr_GK-ZAaoGdNjLPX2HcobJAfXoAYuk9eufq02Tfp3gyr0vUDTUvR_FiymNxWu0JHpTSzWwBKdg";
@@ -23,6 +34,18 @@ const SignUpScreen = () => {
   const insets = useSafeAreaInsets();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<SignUpSchemaType>({
+    resolver: zodResolver(signUpSchema),
+    defaultValues: { email: "", password: "" },
+  });
+
+  const onSubmit = (data: SignUpSchemaType) => {
+    console.log(data);
+  };
 
   return (
     // Base container with background color
@@ -90,32 +113,57 @@ const SignUpScreen = () => {
               <Text color="white" fow="600" ml="$1">
                 Email
               </Text>
-              <Input
-                h={55}
-                br="$4"
-                bg="rgba(255,255,255,0.05)"
-                placeholder="foodie@example.com"
-                color="white"
-                borderWidth={1}
-                borderColor="rgba(255,255,255,0.1)"
-                focusStyle={{ borderColor: "$primary" }}
+              <Controller
+                control={control}
+                name="email"
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    h={55}
+                    br="$4"
+                    bg="$borderColor"
+                    placeholder="foodie@example.com"
+                    color="white"
+                    borderWidth={1}
+                    borderColor="rgba(255,255,255,0.1)"
+                    focusStyle={{ borderColor: "$primary" }}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                  />
+                )}
               />
+              {errors.email && (
+                <Text color="red" fos="$3">
+                  {errors.email.message}
+                </Text>
+              )}
             </YStack>
 
             <YStack gap="$2">
               <Text color="white" fow="600" ml="$1">
                 Password
               </Text>
-              <Input
-                h={55}
-                br="$4"
-                bg="rgba(255,255,255,0.05)"
-                secureTextEntry
-                placeholder="••••••••"
-                color="white"
-                borderColor="rgba(255,255,255,0.1)"
-                focusStyle={{ borderColor: "$primary" }}
+              <Controller
+                control={control}
+                name="password"
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    h={55}
+                    br="$4"
+                    bg="$borderColor"
+                    secureTextEntry
+                    placeholder="••••••••"
+                    color="white"
+                    borderColor="$borderColor"
+                    focusStyle={{ borderColor: "$primary" }}
+                    onChangeText={onChange}
+                  />
+                )}
               />
+              {errors.password && (
+                <Text color="red" fos="$3">
+                  {errors.password.message}
+                </Text>
+              )}
             </YStack>
 
             <Button
@@ -124,10 +172,15 @@ const SignUpScreen = () => {
               br="$4"
               bg="$primary"
               pressStyle={{ scale: 0.98, opacity: 0.9 }}
+              onPress={handleSubmit(onSubmit)}
             >
-              <Text color="white" fow="700" fontSize="$4">
-                Sign Up
-              </Text>
+              {isSubmitting ? (
+                <Spinner color={"$color"} />
+              ) : (
+                <Text color="white" fow="700" fontSize="$4">
+                  Sign Up
+                </Text>
+              )}
             </Button>
           </YStack>
 
