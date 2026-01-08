@@ -1,7 +1,11 @@
+import { GOOGLE_ICON } from "@/constants";
+import { useAuth } from "@/lib/store";
+import { registerUser } from "@/services/auth.service";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Apple, ArrowLeft, Chrome } from "@tamagui/lucide-icons";
+import { Apple, ArrowLeft } from "@tamagui/lucide-icons";
+import { useMutation } from "@tanstack/react-query";
 import { Link } from "expo-router";
-import React, { useState } from "react";
+import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
@@ -25,27 +29,32 @@ const signUpSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters long!"),
 });
 
-type SignUpSchemaType = z.infer<typeof signUpSchema>;
+export type SignUpSchemaType = z.infer<typeof signUpSchema>;
 
 const FOOD_IMAGE_URL =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuAuI3Wh3MfwfbbWGKNuxIRWZ4m7eymDdZAz5cP3nZ_6fhbPC2UpFP3Xd1lcHaPBTwigGNTBTKYItlb3km2espnnIHmJa0963iDOM6uwAvcPHCINx4oYTt7CCJMJNYzZuemuI6ayuj9Ttd9Vwvs6NJ2shvrKlkUMLi8PvMBvmIqEUU5FSXDPha8XjVKKqWzcz61Cr_GK-ZAaoGdNjLPX2HcobJAfXoAYuk9eufq02Tfp3gyr0vUDTUvR_FiymNxWu0JHpTSzWwBKdg";
 
 const SignUpScreen = () => {
   const insets = useSafeAreaInsets();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const setSession = useAuth((state) => state.setSession);
   const {
     control,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<SignUpSchemaType>({
     resolver: zodResolver(signUpSchema),
     defaultValues: { email: "", password: "" },
   });
+  const { mutate, isPending, error, data } = useMutation({
+    mutationFn: registerUser,
+    onSuccess: (res) => {
+      console.log({ "register success: ": res });
+      setSession(res);
+    },
+    onError: (err) => console.log({ "register error: ": err }),
+  });
 
-  const onSubmit = (data: SignUpSchemaType) => {
-    console.log(data);
-  };
+  const onSubmit = (data: SignUpSchemaType) => mutate(data);
 
   return (
     // Base container with background color
@@ -174,7 +183,7 @@ const SignUpScreen = () => {
               pressStyle={{ scale: 0.98, opacity: 0.9 }}
               onPress={handleSubmit(onSubmit)}
             >
-              {isSubmitting ? (
+              {isPending ? (
                 <Spinner color={"$color"} />
               ) : (
                 <Text color="white" fow="700" fontSize="$4">
@@ -204,21 +213,30 @@ const SignUpScreen = () => {
               f={1}
               h={55}
               br="$4"
-              bg="white"
-              icon={<Chrome size={20} color="black" />}
+              bg="$backgroundSecondary"
+              pressStyle={{ opacity: 0.5 }}
             >
-              <Text color="black" fow="600">
-                Google
-              </Text>
+              <XStack gap={"$2"} ai={"center"} jc={"center"}>
+                <Image
+                  source={{
+                    uri: GOOGLE_ICON,
+                  }}
+                  style={{ width: 20, height: 20 }}
+                />
+                <Text color="$color" fow="600">
+                  Google
+                </Text>
+              </XStack>
             </Button>
             <Button
               f={1}
               h={55}
               br="$4"
-              bg="white"
-              icon={<Apple size={20} color="black" />}
+              bg="$backgroundSecondary"
+              icon={<Apple size={20} color="$color" />}
+              pressStyle={{ opacity: 0.5 }}
             >
-              <Text color="black" fow="600">
+              <Text color="$color" fow="600">
                 Apple
               </Text>
             </Button>

@@ -1,10 +1,11 @@
+import { useAuth } from "@/lib/store";
 import { Redirect, Stack } from "expo-router";
 import React from "react";
 
-const isLoggedIn = false;
-
 export default function _layout() {
-  if (!isLoggedIn) {
+  const accessToken = useAuth((state) => state.session?.accessToken);
+
+  if (!accessToken) {
     return <Redirect href="/onboarding" />;
   }
 

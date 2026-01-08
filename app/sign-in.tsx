@@ -1,4 +1,5 @@
-import { Apple, ArrowLeft, Chrome } from "@tamagui/lucide-icons";
+import { GOOGLE_ICON } from "@/constants";
+import { Apple, ArrowLeft } from "@tamagui/lucide-icons";
 import { Link } from "expo-router";
 import React, { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -151,12 +152,20 @@ const SignInScreen = () => {
               f={1}
               h={55}
               br="$4"
-              bg="white"
-              icon={<Chrome size={20} color="black" />}
+              bg="$backgroundSecondary"
+              pressStyle={{ opacity: 0.5 }}
             >
-              <Text color="black" fow="600">
-                Google
-              </Text>
+              <XStack gap={"$2"} ai={"center"} jc={"center"}>
+                <Image
+                  source={{
+                    uri: GOOGLE_ICON,
+                  }}
+                  style={{ width: 20, height: 20 }}
+                />
+                <Text color="$color" fow="600">
+                  Google
+                </Text>
+              </XStack>
             </Button>
             <Button
               f={1}

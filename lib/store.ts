@@ -1,6 +1,12 @@
-import { create } from 'zustand'
+import { User } from '@firebase/auth';
+import { create } from 'zustand';
 
-export const useAuth = create((set) => ({
+type AuthState = {
+  session: User | any;
+  setSession: (session: User) => void;
+}
+
+export const useAuth = create<AuthState>((set) => ({
   session: null,
   setSession: (session: any) => set({ session }),
 }))
