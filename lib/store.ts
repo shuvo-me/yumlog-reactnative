@@ -14,7 +14,7 @@ type UserSession = {
 
 type AuthState = {
   session: UserSession | null;
-  setSession: (session: UserSession) => void;
+  setSession: (session: UserSession | null) => void;
   _isHydrated: boolean;
   setIsHydrated: (_isHydrated: boolean) => void;
 };
@@ -23,7 +23,7 @@ export const useAuth = create<AuthState>()(
   persist(
     (set, get) => ({
       session: null,
-      setSession: (session: UserSession) => set({ session }),
+      setSession: (session: UserSession | null) => set({ session }),
       _isHydrated: false,
       setIsHydrated: (_isHydrated: boolean) => set({ _isHydrated }),
     }),

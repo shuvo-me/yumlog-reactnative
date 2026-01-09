@@ -1,15 +1,21 @@
+import { useAuth } from "@/lib/store";
+import { logoutUser } from "@/services/auth.service";
 import {
   BookOpen,
   ChevronRight,
   Heart,
+  LogOut,
   Settings,
   Share2,
 } from "@tamagui/lucide-icons";
+import { useMutation } from "@tanstack/react-query";
+import { router } from "expo-router";
 import React from "react";
 import {
   Avatar,
   Button,
   ScrollView,
+  Spinner,
   styled,
   Text,
   XStack,
@@ -26,8 +32,7 @@ const ProfileCard = styled(YStack, {
   jc: "center",
   gap: "$1",
   borderWidth: 1,
-  borderColor: "rgba(255,255,255,0.05)",
-  elevation: 2,
+  borderColor: "$borderColor",
   f: 1,
 });
 
@@ -45,6 +50,17 @@ const MenuButton = styled(Button, {
 // --- Main Screen ---
 
 export default function ProfileScreen() {
+  const setSession = useAuth((state) => state.setSession);
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["user_sign_out"],
+    mutationFn: logoutUser,
+    onSuccess: () => {
+      console.log("✅ user signed out");
+      setSession(null);
+      router.replace("/sign-in");
+    },
+  });
   return (
     <YStack f={1} backgroundColor="$background">
       {/* Header */}
@@ -142,7 +158,7 @@ export default function ProfileScreen() {
             <MenuAction
               icon={Heart}
               iconBg="#392222"
-              iconColor="#ef4444"
+              iconColor="#ef4343ff"
               title="Favorite Dishes"
               subtitle="Your top rated meals"
             />
@@ -152,6 +168,15 @@ export default function ProfileScreen() {
               iconColor="$gray11"
               title="Settings"
               subtitle="Preferences & Account"
+            />
+            <MenuAction
+              onPress={() => mutate()}
+              icon={LogOut}
+              iconBg="#7d4242ff"
+              iconColor="#ef4343ff"
+              title="Sign Out"
+              subtitle="End your session!"
+              backgroundColor="#392222"
             />
           </YStack>
 
@@ -164,26 +189,56 @@ export default function ProfileScreen() {
 
 // --- Sub-components ---
 
-function MenuAction({ icon: Icon, iconBg, iconColor, title, subtitle }) {
+function MenuAction({
+  icon: Icon,
+  iconBg,
+  iconColor,
+  title,
+  subtitle,
+  backgroundColor,
+  onPress,
+  isLoading,
+}: {
+  icon: typeof LogOut;
+  iconBg: string;
+  iconColor: string;
+  title: string;
+  subtitle: string;
+  backgroundColor?: string;
+  onPress?: () => void;
+  isLoading?: boolean;
+}) {
   return (
-    <MenuButton>
+    <MenuButton bg={backgroundColor} onPress={onPress}>
       <XStack f={1} ai="center" gap="$4">
         <SquareIcon bg={iconBg} color={iconColor} icon={Icon} />
-        <YStack f={1}>
+        <YStack f={1} gap={"$1"}>
           <Text color="white" fontSize="$4" fontWeight="600">
             {title}
           </Text>
-          <Text color="$gray10" fontSize="$1">
+          <Text color="$gray10" fontSize="$3">
             {subtitle}
           </Text>
         </YStack>
-        <ChevronRight color="$neutralMuted" size={20} />
+        {isLoading ? (
+          <Spinner color="$primary" />
+        ) : (
+          <ChevronRight color="$neutralMuted" size={20} />
+        )}
       </XStack>
     </MenuButton>
   );
 }
 
-function SquareIcon({ bg, color, icon: Icon }) {
+function SquareIcon({
+  bg,
+  color,
+  icon: Icon,
+}: {
+  bg: string;
+  color: string;
+  icon: typeof Heart;
+}) {
   return (
     <YStack w={44} h={44} br="$3" bg={bg} ai="center" jc="center">
       <Icon color={color} size={20} fill={Icon === Heart ? color : "none"} />
