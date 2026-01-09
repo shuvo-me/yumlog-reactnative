@@ -1,11 +1,21 @@
 import { useAuth } from "@/lib/store";
 import { Redirect, Stack } from "expo-router";
 import React from "react";
+import { Spinner, YStack } from "tamagui";
 
 export default function _layout() {
-  const accessToken = useAuth((state) => state.session?.accessToken);
+  const session = useAuth((state) => state.session);
 
-  if (!accessToken) {
+  const isHydrated = useAuth((state) => state._isHydrated);
+
+  if (!isHydrated)
+    return (
+      <YStack f={1} ai="center" jc="center" bg="$background">
+        <Spinner size="large" color="$primary" />
+      </YStack>
+    );
+
+  if (!session) {
     return <Redirect href="/onboarding" />;
   }
 
