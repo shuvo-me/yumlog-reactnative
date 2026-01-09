@@ -32,14 +32,21 @@ export const registerUser = async ({ email, password }: SignUpSchemaType) => {
 };
 
 // Login existing user
-export const loginUser = async (email: string, password: string) => {
+export const loginUser = async ({email, password}:{email: string, password: string}) => {
   try {
     const userCredential = await signInWithEmailAndPassword(
       auth,
       email,
       password
     );
-    return userCredential.user;
+    return {
+      uid: userCredential.user.uid,
+      email: userCredential.user.email,
+      displayName: userCredential.user.displayName,
+      photoURL: userCredential.user.photoURL,
+      emailVerified: userCredential.user.emailVerified,
+      createdAt: userCredential.user.metadata.creationTime,
+    };;
   } catch (error: any) {
     throw new Error(error.message);
   }

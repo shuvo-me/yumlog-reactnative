@@ -1,7 +1,12 @@
 import { GOOGLE_ICON } from "@/constants";
-import { Apple, ArrowLeft } from "@tamagui/lucide-icons";
-import { Link } from "expo-router";
-import React, { useState } from "react";
+import { useAuth } from "@/lib/store";
+import { loginUser } from "@/services/auth.service";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Apple } from "@tamagui/lucide-icons";
+import { useMutation } from "@tanstack/react-query";
+import { Link, router } from "expo-router";
+import React from "react";
+import { Controller, useForm } from "react-hook-form";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Button,
@@ -10,20 +15,54 @@ import {
   Input,
   ScrollView,
   Separator,
+  Spinner,
   Text,
   XStack,
   YStack,
   ZStack,
 } from "tamagui";
 import { LinearGradient } from "tamagui/linear-gradient";
+import z from "zod";
+
+const signInSchema = z.object({
+  email: z.email("Please enter a valid email!"),
+  password: z.string().min(6, "Password must be at least 6 characters long!"),
+});
+
+export type SignInSchemaType = z.infer<typeof signInSchema>;
 
 const FOOD_IMAGE_URL =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuAuI3Wh3MfwfbbWGKNuxIRWZ4m7eymDdZAz5cP3nZ_6fhbPC2UpFP3Xd1lcHaPBTwigGNTBTKYItlb3km2espnnIHmJa0963iDOM6uwAvcPHCINx4oYTt7CCJMJNYzZuemuI6ayuj9Ttd9Vwvs6NJ2shvrKlkUMLi8PvMBvmIqEUU5FSXDPha8XjVKKqWzcz61Cr_GK-ZAaoGdNjLPX2HcobJAfXoAYuk9eufq02Tfp3gyr0vUDTUvR_FiymNxWu0JHpTSzWwBKdg";
 
 const SignInScreen = () => {
   const insets = useSafeAreaInsets();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const setSession = useAuth((state) => state.setSession);
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignInSchemaType>({
+    resolver: zodResolver(signInSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["user_sign_in"],
+    mutationFn: loginUser,
+    onSuccess: (res) => {
+      console.log("✅ sign in success: ");
+      setSession(res);
+      router.replace("/");
+    },
+    onError: (err) => {
+      console.log({ "register error: ": err });
+    },
+  });
+
+  const onSubmit = (userInfo: SignInSchemaType) => mutate(userInfo);
 
   return (
     // Base container with background color
@@ -61,19 +100,6 @@ const SignInScreen = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ flexGrow: 1 }}
       >
-        {/* Navigation Bar */}
-        <XStack px="$6" pt={insets.top + 10}>
-          <Button
-            size="$4"
-            circular
-            bg="rgba(255, 255, 255, 0.1)"
-            style={{ backdropFilter: "blur(10px)" }}
-            icon={<ArrowLeft color="white" />}
-            pressStyle={{ scale: 0.95, bg: "rgba(255, 255, 255, 0.2)" }}
-            borderWidth={0}
-          />
-        </XStack>
-
         {/* Form Content */}
         <YStack f={1} jc="flex-end" px="$6" pb={insets.bottom + 20} pt={100}>
           <YStack mb="$8">
@@ -91,32 +117,60 @@ const SignInScreen = () => {
               <Text color="white" fow="600" ml="$1">
                 Email
               </Text>
-              <Input
-                h={55}
-                br="$4"
-                bg="rgba(255,255,255,0.05)"
-                placeholder="foodie@example.com"
-                color="white"
-                borderWidth={1}
-                borderColor="rgba(255,255,255,0.1)"
-                focusStyle={{ borderColor: "$primary" }}
+              <Controller
+                control={control}
+                name="email"
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    keyboardType="email-address"
+                    h={55}
+                    br="$4"
+                    bg="rgba(255,255,255,0.05)"
+                    placeholder="foodie@example.com"
+                    color="white"
+                    borderWidth={1}
+                    borderColor="rgba(255,255,255,0.1)"
+                    focusStyle={{ borderColor: "$primary" }}
+                    onChangeText={(email) => onChange(email.toLowerCase())}
+                    onBlur={onBlur}
+                    value={value}
+                  />
+                )}
               />
+              {errors.email && (
+                <Text color="red" fos="$3">
+                  {errors.email.message}
+                </Text>
+              )}
             </YStack>
 
             <YStack gap="$2">
               <Text color="white" fow="600" ml="$1">
                 Password
               </Text>
-              <Input
-                h={55}
-                br="$4"
-                bg="rgba(255,255,255,0.05)"
-                secureTextEntry
-                placeholder="••••••••"
-                color="white"
-                borderColor="rgba(255,255,255,0.1)"
-                focusStyle={{ borderColor: "$primary" }}
+              <Controller
+                control={control}
+                name="password"
+                render={({ field: { onChange, onBlur } }) => (
+                  <Input
+                    h={55}
+                    br="$4"
+                    bg="rgba(255,255,255,0.05)"
+                    secureTextEntry
+                    placeholder="••••••••"
+                    color="white"
+                    borderColor="rgba(255,255,255,0.1)"
+                    focusStyle={{ borderColor: "$primary" }}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                  />
+                )}
               />
+              {errors.password && (
+                <Text color="red" fos="$3">
+                  {errors.password.message}
+                </Text>
+              )}
             </YStack>
 
             <Button
@@ -125,10 +179,15 @@ const SignInScreen = () => {
               br="$4"
               bg="$primary"
               pressStyle={{ scale: 0.98, opacity: 0.9 }}
+              onPress={handleSubmit(onSubmit)}
             >
-              <Text color="white" fow="700" fontSize="$4">
-                Sign In
-              </Text>
+              {isPending ? (
+                <Spinner color="white" />
+              ) : (
+                <Text color="white" fow="700" fontSize="$4">
+                  Sign In
+                </Text>
+              )}
             </Button>
           </YStack>
 

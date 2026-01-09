@@ -4,7 +4,7 @@ import { registerUser } from "@/services/auth.service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Apple, ArrowLeft } from "@tamagui/lucide-icons";
 import { useMutation } from "@tanstack/react-query";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -48,8 +48,9 @@ const SignUpScreen = () => {
   const { mutate, isPending, error, data } = useMutation({
     mutationFn: registerUser,
     onSuccess: (res) => {
-      console.log({ "register success: ": res });
+      console.log("register success: ✅");
       setSession(res);
+      router.replace("/");
     },
     onError: (err) => console.log({ "register error: ": err }),
   });
@@ -127,6 +128,7 @@ const SignUpScreen = () => {
                 name="email"
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
+                    keyboardType="email-address"
                     h={55}
                     br="$4"
                     bg="$borderColor"
@@ -135,7 +137,8 @@ const SignUpScreen = () => {
                     borderWidth={1}
                     borderColor="rgba(255,255,255,0.1)"
                     focusStyle={{ borderColor: "$primary" }}
-                    onChangeText={onChange}
+                    value={value}
+                    onChangeText={(email) => onChange(email.toLowerCase())}
                     onBlur={onBlur}
                   />
                 )}
