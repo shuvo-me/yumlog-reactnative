@@ -1,5 +1,9 @@
 import { SignUpSchemaType } from "@/app/sign-up";
 import {
+  GoogleSignin,
+  isSuccessResponse,
+} from "@react-native-google-signin/google-signin";
+import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithCredential,
@@ -8,6 +12,12 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../lib/firebase";
+
+GoogleSignin.configure({
+  webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
+  offlineAccess: true,
+  //scopes: ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'],
+});
 
 // Register a new user
 export const registerUser = async ({ email, password }: SignUpSchemaType) => {
@@ -63,21 +73,26 @@ export const loginUser = async ({
 };
 
 // Google Sign In
-export const signInWithGoogle = async (id_token: string) => {
+export const signInWithGoogle = async () => {
   try {
-    const credential = GoogleAuthProvider.credential(id_token);
-    const userCredential = await signInWithCredential(auth, credential);
+    await GoogleSignin.hasPlayServices();
+    const response = await GoogleSignin.signIn();
+    if (isSuccessResponse(response)) {
+      const credential = GoogleAuthProvider.credential(response.data?.idToken);
+      const userCredential = await signInWithCredential(auth, credential);
 
-    console.log({ userCredential });
-
-    return {
-      uid: userCredential.user.uid,
-      email: userCredential.user.email,
-      displayName: userCredential.user.displayName,
-      photoURL: userCredential.user.photoURL,
-      emailVerified: userCredential.user.emailVerified,
-      createdAt: userCredential.user.metadata.creationTime,
-    };
+      return {
+        uid: userCredential.user.uid,
+        email: userCredential.user.email,
+        displayName: userCredential.user.displayName,
+        photoURL: userCredential.user.photoURL,
+        emailVerified: userCredential.user.emailVerified,
+        createdAt: userCredential.user.metadata.creationTime,
+      };
+    } else {
+      // sign in was cancelled by user
+      throw new Error("Sign in cancelled by user");
+    }
   } catch (error: any) {
     throw new Error(error.message);
   }

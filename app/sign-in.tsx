@@ -1,11 +1,10 @@
-import { GOOGLE_ICON } from "@/constants";
+import { FOOD_IMAGE_URL, GOOGLE_ICON } from "@/constants";
 import { useAuth } from "@/lib/store";
-import { loginUser } from "@/services/auth.service";
+import { loginUser, signInWithGoogle } from "@/services/auth.service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Apple } from "@tamagui/lucide-icons";
 import { useMutation } from "@tanstack/react-query";
 import { Link, router } from "expo-router";
-import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
@@ -30,9 +29,6 @@ const signInSchema = z.object({
 });
 
 export type SignInSchemaType = z.infer<typeof signInSchema>;
-
-const FOOD_IMAGE_URL =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuAuI3Wh3MfwfbbWGKNuxIRWZ4m7eymDdZAz5cP3nZ_6fhbPC2UpFP3Xd1lcHaPBTwigGNTBTKYItlb3km2espnnIHmJa0963iDOM6uwAvcPHCINx4oYTt7CCJMJNYzZuemuI6ayuj9Ttd9Vwvs6NJ2shvrKlkUMLi8PvMBvmIqEUU5FSXDPha8XjVKKqWzcz61Cr_GK-ZAaoGdNjLPX2HcobJAfXoAYuk9eufq02Tfp3gyr0vUDTUvR_FiymNxWu0JHpTSzWwBKdg";
 
 const SignInScreen = () => {
   const insets = useSafeAreaInsets();
@@ -61,6 +57,19 @@ const SignInScreen = () => {
       console.log({ "register error: ": err });
     },
   });
+
+  const {mutate: mutateGoogle, isPending: isGooglePending} = useMutation({
+    mutationKey: ['user_signin_google'],
+    mutationFn: signInWithGoogle,
+    onSuccess: (res) => {
+      console.log("✅ sign in success: ");
+      setSession(res);
+      router.replace("/");
+    },
+    onError: (err) => {
+      console.log({ "Google Sign In error: ": err });
+    }
+  })
 
   const onSubmit = (userInfo: SignInSchemaType) => mutate(userInfo);
 
@@ -213,6 +222,7 @@ const SignInScreen = () => {
               br="$4"
               bg="$backgroundSecondary"
               pressStyle={{ opacity: 0.5 }}
+              onPress={()=> mutateGoogle()}
             >
               <XStack gap={"$2"} ai={"center"} jc={"center"}>
                 <Image
