@@ -1,11 +1,10 @@
-import { GOOGLE_ICON } from "@/constants";
+import { FOOD_IMAGE_URL, GOOGLE_ICON } from "@/constants";
 import { useAuth } from "@/lib/store";
-import { registerUser } from "@/services/auth.service";
+import { registerUser, signInWithGoogle } from "@/services/auth.service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Apple, ArrowLeft } from "@tamagui/lucide-icons";
 import { useMutation } from "@tanstack/react-query";
 import { Link, router } from "expo-router";
-import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
@@ -31,8 +30,6 @@ const signUpSchema = z.object({
 
 export type SignUpSchemaType = z.infer<typeof signUpSchema>;
 
-const FOOD_IMAGE_URL =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuAuI3Wh3MfwfbbWGKNuxIRWZ4m7eymDdZAz5cP3nZ_6fhbPC2UpFP3Xd1lcHaPBTwigGNTBTKYItlb3km2espnnIHmJa0963iDOM6uwAvcPHCINx4oYTt7CCJMJNYzZuemuI6ayuj9Ttd9Vwvs6NJ2shvrKlkUMLi8PvMBvmIqEUU5FSXDPha8XjVKKqWzcz61Cr_GK-ZAaoGdNjLPX2HcobJAfXoAYuk9eufq02Tfp3gyr0vUDTUvR_FiymNxWu0JHpTSzWwBKdg";
 
 const SignUpScreen = () => {
   const insets = useSafeAreaInsets();
@@ -48,12 +45,25 @@ const SignUpScreen = () => {
   const { mutate, isPending, error, data } = useMutation({
     mutationFn: registerUser,
     onSuccess: (res) => {
-      console.log("register success: ✅");
+      console.log("✅ register success");
       setSession(res);
       router.replace("/");
     },
     onError: (err) => console.log({ "register error: ": err }),
   });
+
+  const {mutate: mutateGoogle, isPending: isGooglePending} = useMutation({
+    mutationKey: ['user_signup_google'],
+    mutationFn: signInWithGoogle,
+    onSuccess: (res) => {
+      console.log("✅ Google sign up success");
+      setSession(res);
+      router.replace("/");
+    },
+    onError: (err) => {
+      console.log({ "Google Sign Up error: ": err });
+    }
+  })
 
   const onSubmit = (data: SignUpSchemaType) => mutate(data);
 
@@ -218,6 +228,7 @@ const SignUpScreen = () => {
               br="$4"
               bg="$backgroundSecondary"
               pressStyle={{ opacity: 0.5 }}
+              onPress={()=> mutateGoogle()}
             >
               <XStack gap={"$2"} ai={"center"} jc={"center"}>
                 <Image
