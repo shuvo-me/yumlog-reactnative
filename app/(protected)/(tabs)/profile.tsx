@@ -50,6 +50,7 @@ const MenuButton = styled(Button, {
 // --- Main Screen ---
 
 export default function ProfileScreen() {
+  const session = useAuth((state) => state.session);
   const setSession = useAuth((state) => state.setSession);
 
   const { mutate, isPending } = useMutation({
@@ -61,6 +62,17 @@ export default function ProfileScreen() {
       router.replace("/sign-in");
     },
   });
+
+  if (!session) {
+    return (
+      <YStack f={1} backgroundColor="$background" ai="center" jc="center">
+        <Spinner size="large" color="$primary" />
+        <Text color="white" mt="$4">
+          Loading profile...
+        </Text>
+      </YStack>
+    );
+  }
   return (
     <YStack f={1} backgroundColor="$background">
       {/* Header */}
@@ -86,7 +98,7 @@ export default function ProfileScreen() {
             <Avatar size="$12" circular bg="$primary">
               <Avatar.Image
                 source={{
-                  uri: "https://picsum.photos/id/64/400/400",
+                  uri: session?.photoURL || "https://picsum.photos/id/64/400/400",
                   width: 104,
                   height: 104,
                 }}
@@ -95,10 +107,10 @@ export default function ProfileScreen() {
 
             <YStack ai="center" gap="$1">
               <Text color="white" fontSize="$7" fontWeight="700">
-                Sarah Jenkins
+                {session?.displayName || "User"}
               </Text>
               <Text color="$textSecondary" fontSize="$3" fontWeight="500">
-                @sarah_eats_sf
+                {session?.email}
               </Text>
               <XStack bg="#392f28" px="$3" py="$1" br="$10" mt="$2">
                 <Text
@@ -177,6 +189,7 @@ export default function ProfileScreen() {
               title="Sign Out"
               subtitle="End your session!"
               backgroundColor="#392222"
+              isLoading={isPending}
             />
           </YStack>
 
