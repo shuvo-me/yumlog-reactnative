@@ -1,6 +1,8 @@
 import { SignUpSchemaType } from "@/app/sign-up";
 import {
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithCredential,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -16,7 +18,9 @@ export const registerUser = async ({ email, password }: SignUpSchemaType) => {
       password
     );
     // Optionally add the user's name to their profile
-    await updateProfile(userCredential.user, { displayName: email.split("@")[0] });
+    await updateProfile(userCredential.user, {
+      displayName: email.split("@")[0],
+    });
 
     return {
       uid: userCredential.user.uid,
@@ -32,7 +36,13 @@ export const registerUser = async ({ email, password }: SignUpSchemaType) => {
 };
 
 // Login existing user
-export const loginUser = async ({email, password}:{email: string, password: string}) => {
+export const loginUser = async ({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) => {
   try {
     const userCredential = await signInWithEmailAndPassword(
       auth,
@@ -46,7 +56,28 @@ export const loginUser = async ({email, password}:{email: string, password: stri
       photoURL: userCredential.user.photoURL,
       emailVerified: userCredential.user.emailVerified,
       createdAt: userCredential.user.metadata.creationTime,
-    };;
+    };
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
+
+// Google Sign In
+export const signInWithGoogle = async (id_token: string) => {
+  try {
+    const credential = GoogleAuthProvider.credential(id_token);
+    const userCredential = await signInWithCredential(auth, credential);
+
+    console.log({ userCredential });
+
+    return {
+      uid: userCredential.user.uid,
+      email: userCredential.user.email,
+      displayName: userCredential.user.displayName,
+      photoURL: userCredential.user.photoURL,
+      emailVerified: userCredential.user.emailVerified,
+      createdAt: userCredential.user.metadata.creationTime,
+    };
   } catch (error: any) {
     throw new Error(error.message);
   }
