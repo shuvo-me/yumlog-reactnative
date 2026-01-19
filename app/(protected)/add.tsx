@@ -1,3 +1,4 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Camera,
   Check,
@@ -6,7 +7,8 @@ import {
   Utensils,
 } from "@tamagui/lucide-icons";
 import { router } from "expo-router";
-import React, { useState } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
@@ -24,10 +26,70 @@ import {
   YStack,
   ZStack,
 } from "tamagui";
+import z from "zod";
+
+const FoodEntrySchema = z.object({
+  dishName: z.string().min(3, "Dish name must be at least 3 characters long"),
+  price: z.string().min(1, "Price is required"),
+  restaurant: z
+    .string()
+    .min(3, "Restaurant name must be at least 3 characters long"),
+  sweetness: z
+    .number()
+    .min(0, "Sweetness must be between 0 and 10")
+    .max(10, "Sweetness must be between 0 and 10"),
+  spiciness: z
+    .number()
+    .min(0, "Spiciness must be between 0 and 10")
+    .max(10, "Spiciness must be between 0 and 10"),
+  saltiness: z
+    .number()
+    .min(0, "Saltiness must be between 0 and 10")
+    .max(10, "Saltiness must be between 0 and 10"),
+  umami: z
+    .number()
+    .min(0, "Umami must be between 0 and 10")
+    .max(10, "Umami must be between 0 and 10"),
+  wouldRecommend: z.boolean(),
+  image: z.string().url("Image URL is required"),
+  location: z.object({
+    name: z.string().min(3, "Location name must be at least 3 characters long"),
+    latitude: z.number(),
+    longitude: z.number(),
+  }),
+  mustTry: z.boolean(),
+});
+
+type Schema = z.infer<typeof FoodEntrySchema>;
 
 export default function FoodEntryScreen() {
   const inset = useSafeAreaInsets();
   const [checked, setChecked] = useState(false);
+  const {
+    handleSubmit,
+    register,
+    control,
+    formState: { errors },
+  } = useForm<Schema>({
+    resolver: zodResolver(FoodEntrySchema),
+    defaultValues: {
+      dishName: "",
+      price: "",
+      restaurant: "",
+      sweetness: 0,
+      spiciness: 0,
+      saltiness: 0,
+      umami: 0,
+      wouldRecommend: false,
+      image: "",
+      location: {
+        name: "",
+        latitude: 0,
+        longitude: 0,
+      },
+      mustTry: false,
+    },
+  });
   return (
     <View f={1} bg="$background" pt={inset.top + 10} pb={inset.bottom + 10}>
       {/* 1. Sticky Header */}
@@ -105,7 +167,7 @@ export default function FoodEntryScreen() {
                 >
                   Price
                 </Label>
-                <ZStack ai="center">
+                <ZStack ai="center" jc="center">
                   <Input
                     h={50}
                     bg="$surface-dark"
@@ -114,7 +176,7 @@ export default function FoodEntryScreen() {
                     placeholder="0.00"
                     keyboardType="numeric"
                   />
-                  <Text pos="absolute" l="$4" color="$text-muted">
+                  <Text pos="absolute" l="$4" t="$4" color="$text-muted">
                     $
                   </Text>
                 </ZStack>
@@ -266,7 +328,7 @@ export default function FoodEntryScreen() {
   );
 }
 
-const TasteSlider = ({ label, value }) => (
+const TasteSlider = ({ label, value }: { label: string; value: number }) => (
   <YStack gap="$2">
     <XStack jc="space-between">
       <Text fow="500">{label}</Text>

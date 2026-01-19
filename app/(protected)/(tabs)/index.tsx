@@ -115,10 +115,32 @@ export default function HomeScreen() {
   );
 }
 
+interface Tag {
+  label: string;
+  emoji: string;
+  active?: boolean;
+}
+
+interface FoodItemProps {
+  title: string;
+  location: string;
+  distance: string;
+  rating: string;
+  image: string;
+  tags: Tag[];
+}
+
 /**
  * Card Sub-Component
  */
-function FoodItem({ title, location, distance, rating, image, tags }) {
+function FoodItem({
+  title,
+  location,
+  distance,
+  rating,
+  image,
+  tags,
+}: FoodItemProps) {
   const router = useRouter();
   return (
     <FoodCard
