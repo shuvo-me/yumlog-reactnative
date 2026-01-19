@@ -1,6 +1,5 @@
 import { ListFilter, MapPin, Plus, Search, Star } from "@tamagui/lucide-icons";
 import { router, useRouter } from "expo-router";
-import React from "react";
 import {
   Button,
   Image,
@@ -101,7 +100,7 @@ export default function HomeScreen() {
       {/* Floating Action Button */}
       <Button
         position="absolute"
-        bottom={100}
+        bottom={50}
         right={16}
         width={60}
         height={60}
