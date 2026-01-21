@@ -6,10 +6,11 @@ import {
   MapPin,
   Utensils,
 } from "@tamagui/lucide-icons";
+import * as ImagePicker from 'expo-image-picker';
 import { router } from "expo-router";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { ScrollView } from "react-native";
+import { Controller, FieldErrors, useForm } from "react-hook-form";
+import { Alert, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Button,
@@ -51,13 +52,14 @@ const FoodEntrySchema = z.object({
     .min(0, "Umami must be between 0 and 10")
     .max(10, "Umami must be between 0 and 10"),
   wouldRecommend: z.boolean(),
-  image: z.string().url("Image URL is required"),
+  image: z.string().optional(),
   location: z.object({
-    name: z.string().min(3, "Location name must be at least 3 characters long"),
-    latitude: z.number(),
-    longitude: z.number(),
-  }),
+    name: z.string().optional(),
+    latitude: z.number().optional(),
+    longitude: z.number().optional(),
+  }).optional(),
   mustTry: z.boolean(),
+  recommend: z.boolean(),
 });
 
 type Schema = z.infer<typeof FoodEntrySchema>;
@@ -67,9 +69,10 @@ export default function FoodEntryScreen() {
   const [checked, setChecked] = useState(false);
   const {
     handleSubmit,
-    register,
     control,
-    formState: { errors },
+    formState: { isSubmitting, errors },
+    watch,
+    setValue
   } = useForm<Schema>({
     resolver: zodResolver(FoodEntrySchema),
     defaultValues: {
@@ -88,8 +91,52 @@ export default function FoodEntryScreen() {
         longitude: 0,
       },
       mustTry: false,
+      recommend: false,
     },
   });
+
+  const imageURI = watch("image");
+
+  const pickImage = async () => {
+    try {
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+      if (status !== 'granted') {
+        Alert.alert(
+          "Permission Required",
+          "We need your permission to access photos to upload a dish image. Please enable it in settings.",
+          [{ text: "OK" }]
+        );
+        return;
+      }
+
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ['images'],
+        allowsEditing: true,
+        aspect: [16, 9],
+        quality: 0.7,
+      });
+
+      if (!result.canceled && result.assets && result.assets.length > 0) {
+        setValue("image", result.assets[0].uri);
+      }
+    } catch (error) {
+      console.error("Error picking image:", error);
+      Alert.alert("Error", "An unexpected error occurred while picking the image.");
+    }
+  };
+
+  const onSubmit = async (data: Schema) => {
+    console.log("Submit Success:", data);
+    Alert.alert("Success", "Food entry added successfully");
+  };
+
+  const onInvalid = (errors: any) => {
+    console.log("Form Validation Errors:", errors);
+    Alert.alert("Error", "Please fill in all required fields correctly.");
+  };
+
+
   return (
     <View f={1} bg="$background" pt={inset.top + 10} pb={inset.bottom + 10}>
       {/* 1. Sticky Header */}
@@ -107,7 +154,7 @@ export default function FoodEntryScreen() {
         <Text fontSize="$5" fow="700">
           New Entry
         </Text>
-        <Button chromeless p={0} pressStyle={{ opacity: 0.5 }}>
+        <Button chromeless p={0} pressStyle={{ opacity: 0.5 }} onPress={handleSubmit(onSubmit, onInvalid)}>
           <Text color="$primary" fontSize="$4" fow="700">
             Save
           </Text>
@@ -117,24 +164,40 @@ export default function FoodEntryScreen() {
       <ScrollView showsVerticalScrollIndicator={false}>
         <YStack p="$4" gap="$6" pb="$20">
           {/* Section 1: Hero Image Upload */}
-          <YStack
-            h={250}
-            br="$4"
-            bw={2}
-            bs="dashed"
-            boc="rgba(104, 72, 49, 0.5)"
-            bg="rgba(52, 36, 24, 0.3)"
-            ai="center"
-            jc="center"
-            gap="$3"
-          >
-            <View p="$4" br={999} bg="$surface-dark">
-              <Camera size={32} color="$primary" />
-            </View>
-            <Text color="$text-muted" fow="500" fontSize="$3">
-              Tap to upload photo
-            </Text>
-          </YStack>
+          {imageURI ?
+
+            <ZStack h={250}>
+              <Image source={{ uri: imageURI }} width={'100%'} height={250} objectFit="cover" br="$4" />
+              <Button height={'100%'} width={'100%'} chromeless p={0} onPress={pickImage} icon={<Camera size={24} color="white" />}>
+                <Text color="white" fontSize="$4" fow="700">
+                  Change
+                </Text>
+              </Button>
+            </ZStack>
+
+            : (
+              <YStack
+                h={250}
+                br="$4"
+                bw={2}
+                bs="dashed"
+                boc="rgba(104, 72, 49, 0.5)"
+                bg="rgba(52, 36, 24, 0.3)"
+                ai="center"
+                jc="center"
+                gap="$3"
+                onPress={pickImage}
+                pressStyle={{ opacity: 0.7, scale: 0.98 }}
+              >
+                <View p="$4" br={999} bg="$surface-dark">
+                  <Camera size={32} color="$primary" />
+                </View>
+                <Text color="$text-muted" fow="500" fontSize="$3">
+                  Tap to upload photo
+                </Text>
+              </YStack>
+            )}
+
 
           {/* Basic Info Fields */}
           <YStack gap="$4">
@@ -148,13 +211,27 @@ export default function FoodEntryScreen() {
               >
                 Dish Name
               </Label>
-              <Input
-                h={50}
-                bg="$surface-dark"
-                boc="$border-dark"
-                placeholder="e.g. Spicy Miso Ramen"
-                placeholderTextColor="$colorSecondary"
+              <Controller
+                control={control}
+                name="dishName"
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    h={50}
+                    bg="$surface-dark"
+                    boc="$border-dark"
+                    placeholder="e.g. Spicy Miso Ramen"
+                    placeholderTextColor="$colorSecondary"
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                  />
+                )}
               />
+              {errors.dishName && (
+                <Text color={'$error'} fontSize="$3">
+                  *{errors.dishName.message}
+                </Text>
+              )}
             </YStack>
 
             <XStack gap="$4">
@@ -168,18 +245,32 @@ export default function FoodEntryScreen() {
                   Price
                 </Label>
                 <ZStack ai="center" jc="center">
-                  <Input
-                    h={50}
-                    bg="$surface-dark"
-                    boc="$border-dark"
-                    pl="$8"
-                    placeholder="0.00"
-                    keyboardType="numeric"
+                  <Controller
+                    control={control}
+                    name="price"
+                    render={({ field: { onChange, onBlur, value } }) => (
+                      <Input
+                        h={50}
+                        bg="$surface-dark"
+                        boc="$border-dark"
+                        pl="$8"
+                        placeholder="0.00"
+                        keyboardType="numeric"
+                        onBlur={onBlur}
+                        onChangeText={onChange}
+                        value={value}
+                      />
+                    )}
                   />
                   <Text pos="absolute" l="$4" t="$4" color="$text-muted">
                     $
                   </Text>
                 </ZStack>
+                {errors.price && (
+                  <Text color={'$error'} fontSize="$3">
+                    *{errors.price.message}
+                  </Text>
+                )}
               </YStack>
               <YStack f={1} gap="$2">
                 <Label
@@ -190,12 +281,26 @@ export default function FoodEntryScreen() {
                 >
                   Restaurant
                 </Label>
-                <Input
-                  h={50}
-                  bg="$surface-dark"
-                  boc="$border-dark"
-                  placeholder="Search..."
+                <Controller
+                  control={control}
+                  name="restaurant"
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <Input
+                      h={50}
+                      bg="$surface-dark"
+                      boc="$border-dark"
+                      placeholder="Search..."
+                      onBlur={onBlur}
+                      onChangeText={onChange}
+                      value={value}
+                    />
+                  )}
                 />
+                {errors.restaurant && (
+                  <Text color={'$error'} fontSize="$3">
+                    *{errors.restaurant.message}
+                  </Text>
+                )}
               </YStack>
             </XStack>
           </YStack>
@@ -207,11 +312,54 @@ export default function FoodEntryScreen() {
             <Text fontSize="$6" fow="700">
               Taste Profile
             </Text>
-
-            <TasteSlider label="Sweetness" value={3} />
-            <TasteSlider label="Spiciness" value={7} />
-            <TasteSlider label="Saltiness" value={5} />
-            <TasteSlider label="Umami" value={8} />
+            <Controller
+              control={control}
+              name="sweetness"
+              render={({ field: { onChange, value, } }) => (
+                <TasteSlider
+                  label="Sweetness"
+                  value={value}
+                  onChange={onChange}
+                  errors={errors}
+                />
+              )}
+            />
+            <Controller
+              control={control}
+              name="spiciness"
+              render={({ field: { onChange, value } }) => (
+                <TasteSlider
+                  label="Spiciness"
+                  value={value}
+                  onChange={onChange}
+                  errors={errors}
+                />
+              )}
+            />
+            <Controller
+              control={control}
+              name="saltiness"
+              render={({ field: { onChange, value } }) => (
+                <TasteSlider
+                  label="Saltiness"
+                  value={value}
+                  onChange={onChange}
+                  errors={errors}
+                />
+              )}
+            />
+            <Controller
+              control={control}
+              name="umami"
+              render={({ field: { onChange, value } }) => (
+                <TasteSlider
+                  label="Umami"
+                  value={value}
+                  onChange={onChange}
+                  errors={errors}
+                />
+              )}
+            />
           </YStack>
 
           <Separator boc="$border-dark" opacity={0.3} />
@@ -233,35 +381,48 @@ export default function FoodEntryScreen() {
                   Adds to your 'Top Picks' list
                 </Text>
               </YStack>
-              <Switch
-                unstyled
-                size="$3"
-                checked={checked}
-                onCheckedChange={setChecked}
-                backgroundColor={checked ? "$primary" : "$backgroundSecondary"}
-                borderColor={checked ? "$primary" : "$borderColor"}
-                borderWidth={1}
-                borderRadius={100}
-                width={50}
-                height={28}
-                padding={2}
-              >
-                <Switch.Thumb
-                  animation="quick"
-                  backgroundColor="white"
-                  width={22}
-                  height={22}
-                  borderRadius={100}
-                />
-              </Switch>
+              <Controller
+                control={control}
+                name="recommend"
+                render={({ field: { onChange, value } }) => (
+                  <Switch
+                    unstyled
+                    size="$3"
+                    checked={value}
+                    onCheckedChange={onChange}
+                    backgroundColor={value ? "$primary" : "$backgroundSecondary"}
+                    borderColor={value ? "$primary" : "$borderColor"}
+                    borderWidth={1}
+                    borderRadius={100}
+                    width={50}
+                    height={28}
+                    padding={2}
+                  >
+                    <Switch.Thumb
+                      animation="quick"
+                      backgroundColor="white"
+                      width={22}
+                      height={22}
+                      borderRadius={100}
+                    />
+                  </Switch>
+                )}
+              />
+
             </XStack>
 
             <XStack ai="center" gap="$3" p="$3">
-              <Checkbox size="$5" boc="$borderColor" bg="$background">
-                <Checkbox.Indicator>
-                  <Check color="$primary" />
-                </Checkbox.Indicator>
-              </Checkbox>
+              <Controller
+                control={control}
+                name="mustTry"
+                render={({ field: { onChange, value } }) => (
+                  <Checkbox size="$5" boc="$borderColor" bg="$background" onCheckedChange={onChange} checked={value}>
+                    <Checkbox.Indicator>
+                      <Check color="$primary" />
+                    </Checkbox.Indicator>
+                  </Checkbox>
+                )}
+              />
               <Text fow="500">Must Try Again</Text>
             </XStack>
           </YStack>
@@ -295,8 +456,8 @@ export default function FoodEntryScreen() {
               </YStack>
             </ZStack>
             <Button
-              chromeless
               icon={<LocateFixed size={18} color="$primary" />}
+              pressStyle={{ opacity: 0.5 }}
             >
               <Text color="$primary" fontSize="$3" fow="600">
                 Use Current Location
@@ -317,8 +478,16 @@ export default function FoodEntryScreen() {
         bg="$background-dark"
         borderTopWidth={0.5}
         boc="$borderColor"
+        zIndex={100}
       >
-        <Button bg="$primary" h={60} br="$4" icon={<Utensils color="white" />}>
+        <Button
+          bg="$primary"
+          h={60}
+          br="$4"
+          pressStyle={{ scale: 0.95, opacity: 0.8 }}
+          icon={<Utensils color="white" />}
+          onPress={handleSubmit(onSubmit, onInvalid)}
+        >
           <Text color="white" fontSize="$4" fow="800">
             Log Dish
           </Text>
@@ -328,7 +497,7 @@ export default function FoodEntryScreen() {
   );
 }
 
-const TasteSlider = ({ label, value }: { label: string; value: number }) => (
+const TasteSlider = ({ label, value, onChange, errors }: { label: string; value: number; onChange: (value: number) => void; errors: FieldErrors<Schema> }) => (
   <YStack gap="$2">
     <XStack jc="space-between">
       <Text fow="500">{label}</Text>
@@ -338,7 +507,7 @@ const TasteSlider = ({ label, value }: { label: string; value: number }) => (
         </Text>
       </View>
     </XStack>
-    <Slider defaultValue={[value]} max={10} step={1}>
+    <Slider value={[value]} max={10} step={1} onValueChange={(vals) => onChange(vals[0])}>
       <Slider.Track h={6} bg="$backgroundSecondary" boc="$borderColor" bw={1}>
         <Slider.TrackActive bg="$primary" />
       </Slider.Track>
@@ -351,5 +520,12 @@ const TasteSlider = ({ label, value }: { label: string; value: number }) => (
         bg="white"
       />
     </Slider>
+    {
+      errors[label.toLowerCase() as keyof Schema] && (
+        <Text color={'$error'} fontSize="$3">
+          *{errors[label.toLowerCase() as keyof Schema]?.message as string}
+        </Text>
+      )
+    }
   </YStack>
 );

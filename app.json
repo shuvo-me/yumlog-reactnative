@@ -13,7 +13,9 @@
       "bundleIdentifier": "com.yumlog.app",
       "googleServicesFile": "./GoogleService-Info.plist",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSPhotoLibraryUsageDescription": "The app accesses your photos to let you share food dish logs with your friends.",
+        "NSCameraUsageDescription": "The app uses your camera to take photos of the food you want to log."
       }
     },
     "android": {
@@ -44,6 +46,12 @@
           "dark": {
             "backgroundColor": "#000000"
           }
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
       ]
     ],

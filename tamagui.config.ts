@@ -19,6 +19,7 @@ const customTokens = createTokens({
     darkTextMain: '#FFFFFF',
     darkTextSec: '#baa89c',
     darkBorder: 'rgba(255,255,255,0.05)',
+    errorDark: '#f2240dff',
     
     // Light Mode Palette (from 2nd HTML)
     lightBg: '#FAFAFA',
@@ -26,6 +27,7 @@ const customTokens = createTokens({
     lightTextMain: '#171717',
     lightTextSec: '#737373',
     lightBorder: '#E5E5E5',
+    errorLight: '#f2240dff',
   },
 });
 
@@ -39,6 +41,7 @@ const light = {
   success: customTokens.color.limeGreen,
   cardBackground: customTokens.color.lightCard,
   shadowColor: 'rgba(0,0,0,0.06)',
+  error: customTokens.color.errorLight,
 };
 
 const dark = {
@@ -51,6 +54,7 @@ const dark = {
   success: customTokens.color.limeGreen,
   cardBackground: customTokens.color.darkCard,
   shadowColor: 'rgba(0,0,0,0.4)',
+  error: customTokens.color.errorDark,
 };
 
 // 3. Keep Font and Animation logic
