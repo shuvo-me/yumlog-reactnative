@@ -30,32 +30,24 @@ export interface UserProfile {
 
 export interface FoodEntry {
   id: string;
-  uid: string;
-  dish_name: string;
-  restaurant_name: string;
-  description: string;
-  photo_urls: string[];
-  category: "appetizer" | "main" | "dessert" | "beverage" | "other";
-  cuisine_type: string;
-  rating: number; // 1-10
-  price?: number;
-  location: {
-    address: string;
-    city: string;
-    latitude: number;
-    longitude: number;
-  };
-  taste_profile: {
-    sweetness: number; // 1-10
-    spiciness: number; // 1-10
-    saltiness: number; // 1-10
-    umami: number; // 1-10
-  };
-  review: string;
-  visited_date: Timestamp;
-  created_at: Timestamp;
-  updated_at: Timestamp;
-  is_favorite: boolean;
+   dishName: string;
+    price: string;
+    restaurant: string;
+    sweetness: number;
+    spiciness: number;
+    saltiness: number;
+    umami: number;
+    wouldRecommend: boolean;
+    mustTry: boolean;
+    recommend: boolean;
+    image?: string | undefined;
+    location?: {
+        name?: string | undefined;
+        latitude?: number | undefined;
+        longitude?: number | undefined;
+    } | undefined;
+    created_at: Timestamp;
+    updated_at: Timestamp;
 }
 
 export interface Restaurant {
@@ -151,7 +143,7 @@ export const updateUserProfile = async (
  */
 export const createFoodEntry = async (
   uid: string,
-  data: Omit<FoodEntry, "id" | "uid" | "created_at" | "updated_at">
+  data: Omit<FoodEntry, "id" | "created_at" | "updated_at">
 ): Promise<string> => {
   try {
     const now = Timestamp.now();
@@ -161,7 +153,6 @@ export const createFoodEntry = async (
     const entryData: FoodEntry = {
       ...data,
       id: newEntryRef.id,
-      uid,
       created_at: now,
       updated_at: now,
     };

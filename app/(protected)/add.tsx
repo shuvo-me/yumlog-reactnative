@@ -1,3 +1,6 @@
+import { createFoodEntry } from "@/lib/firestore";
+import { useAuth } from "@/lib/store";
+import { uploadFile } from "@/services/storage.service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Camera,
@@ -66,6 +69,8 @@ type Schema = z.infer<typeof FoodEntrySchema>;
 
 export default function FoodEntryScreen() {
   const inset = useSafeAreaInsets();
+  const { session } = useAuth();
+
   const {
     handleSubmit,
     control,
@@ -149,7 +154,30 @@ export default function FoodEntryScreen() {
 
   const onSubmit = async (data: Schema) => {
     console.log("Submit Success:", data);
-    Alert.alert("Success", "Food entry added successfully");
+    try {
+      if (!session?.uid) {
+        Alert.alert("Error", "You must be logged in to save entries.");
+        return;
+      }
+
+      let imageUrl;
+      if (data.image) {
+        imageUrl = await uploadFile(data.image);
+      }
+
+      console.log("Image URL:", imageUrl);
+      const foodEntry: Schema = {
+        ...data,
+        image: imageUrl,
+      }
+      console.log("Food Entry:", foodEntry);
+      const res = await createFoodEntry(session.uid, foodEntry);
+      console.log("Food Entry ID:", res);
+      Alert.alert("Success", "Food entry added successfully");
+    } catch (error) {
+      console.error("Error when creating food entry:", error);
+      Alert.alert("Error", "An unexpected error occurred while creating the food entry.");
+    }
 
   };
 
@@ -163,6 +191,9 @@ export default function FoodEntryScreen() {
     <View f={1} bg="$background" pt={inset.top + 10} pb={inset.bottom + 10}>
       {/* 1. Sticky Header */}
       <XStack height={60} ai="center" jc="space-between" px="$4">
+        <Text fontSize="$5" fow="700">
+          New Entry
+        </Text>
         <Button
           chromeless
           p={0}
@@ -173,14 +204,7 @@ export default function FoodEntryScreen() {
             Cancel
           </Text>
         </Button>
-        <Text fontSize="$5" fow="700">
-          New Entry
-        </Text>
-        <Button chromeless p={0} pressStyle={{ opacity: 0.5 }} onPress={handleSubmit(onSubmit, onInvalid)}>
-          <Text color="$primary" fontSize="$4" fow="700">
-            Save
-          </Text>
-        </Button>
+
       </XStack>
 
       <ScrollView showsVerticalScrollIndicator={false}>

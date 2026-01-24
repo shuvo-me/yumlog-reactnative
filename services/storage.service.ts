@@ -1,16 +1,42 @@
-import { storage } from "@/lib/firebase";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+// services/storage.service.ts
 
-export const uploadFile = async (fileUri: string) => {
+const CLOUD_NAME = process.env.EXPO_PUBLIC_CLOUDINARY_CLOUD_NAME;
+const UPLOAD_PRESET = process.env.EXPO_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}`;
+const ACTION_NAME = 'image/upload';
+
+export const uploadFile = async (fileUri: string): Promise<string> => {
     try {
-        const response = await fetch(fileUri);
-        const blob = await response.blob();
-        const storageRef = ref(storage, `images/${Date.now()}.jpg`);
-        await uploadBytes(storageRef, blob);
-        const downloadURL = await getDownloadURL(storageRef);
-        return downloadURL;
+        const data = new FormData();
+        
+        data.append('file', {
+            uri: fileUri,
+            type: 'image/jpeg', 
+            name: `dish_${Date.now()}.jpg`,
+        } as any);
+        
+        data.append('upload_preset', UPLOAD_PRESET!);
+        
+        const response = await fetch(
+            `${CLOUDINARY_URL}/${ACTION_NAME}`,
+            {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            }
+        );
+
+        const result = await response.json();
+
+        if (result.error) {
+            throw new Error(result.error.message);
+        }
+
+        return result.secure_url;
     } catch (error) {
-        console.error("Error uploading file:", error);
+        console.error("Cloudinary upload error:", error);
         throw error;
     }
 }
