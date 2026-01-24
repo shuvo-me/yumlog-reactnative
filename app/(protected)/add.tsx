@@ -3,14 +3,14 @@ import {
   Camera,
   Check,
   LocateFixed,
-  MapPin,
-  Utensils,
+  Utensils
 } from "@tamagui/lucide-icons";
 import * as ImagePicker from 'expo-image-picker';
+import * as Location from 'expo-location';
 import { router } from "expo-router";
-import { useState } from "react";
 import { Controller, FieldErrors, useForm } from "react-hook-form";
-import { Alert, ScrollView } from "react-native";
+import { Alert, Platform, ScrollView } from "react-native";
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Button,
@@ -66,7 +66,6 @@ type Schema = z.infer<typeof FoodEntrySchema>;
 
 export default function FoodEntryScreen() {
   const inset = useSafeAreaInsets();
-  const [checked, setChecked] = useState(false);
   const {
     handleSubmit,
     control,
@@ -126,9 +125,32 @@ export default function FoodEntryScreen() {
     }
   };
 
+  const handleUseLocation = async () => {
+    try {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert('Permission denied');
+        return;
+      }
+      let location = await Location.getCurrentPositionAsync({});
+      const { latitude, longitude } = location.coords;
+
+      setValue("location", {
+        ...watch("location"),
+        latitude,
+        longitude,
+      });
+    } catch (error) {
+      console.error("Error getting location:", error);
+      Alert.alert("Error", "An unexpected error occurred while getting your location.");
+    }
+
+  };
+
   const onSubmit = async (data: Schema) => {
     console.log("Submit Success:", data);
     Alert.alert("Success", "Food entry added successfully");
+
   };
 
   const onInvalid = (errors: any) => {
@@ -432,32 +454,38 @@ export default function FoodEntryScreen() {
             <Text fontSize="$6" fow="700">
               Location
             </Text>
-            <ZStack h={180} br="$4" ov="hidden" bw={1} boc="$border-dark">
-              <Image
-                source={{ uri: "https://picsum.photos/id/237/600/400" }}
-                w="100%"
-                h="100%"
-                opacity={0.6}
-              />
-              <YStack f={1} ai="center" jc="center">
-                <MapPin size={40} color="$primary" />
-                <View
-                  bg="rgba(52, 36, 24, 0.9)"
-                  px="$3"
-                  py="$1"
-                  br={999}
-                  boc="$border-dark"
-                  bw={1}
-                >
-                  <Text fontSize="$1" fow="700">
-                    Momofuku Noodle Bar
-                  </Text>
-                </View>
-              </YStack>
-            </ZStack>
+            <View h={180} br="$4" ov="hidden" bw={1} boc="$borderColor">
+              <MapView
+                provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : undefined} // Use Google Maps on Android, Apple Maps on iOS
+                style={{ width: '100%', height: '100%' }}
+                initialRegion={{
+                  latitude: watch("location")?.latitude || 37.78825,
+                  longitude: watch("location")?.longitude || -122.4324,
+                  latitudeDelta: 0.01,
+                  longitudeDelta: 0.01,
+                }}
+                // Updates the location when the user moves the map
+                onRegionChangeComplete={(region) => {
+                  setValue("location", {
+                    ...watch("location"),
+                    latitude: region.latitude,
+                    longitude: region.longitude,
+                  });
+                }}
+              >
+                <Marker
+                  coordinate={{
+                    latitude: watch("location")?.latitude || 37.78825,
+                    longitude: watch("location")?.longitude || -122.4324,
+                  }}
+                  title={watch("restaurant") || "Select Restaurant"}
+                />
+              </MapView>
+            </View>
             <Button
               icon={<LocateFixed size={18} color="$primary" />}
               pressStyle={{ opacity: 0.5 }}
+              onPress={handleUseLocation}
             >
               <Text color="$primary" fontSize="$3" fow="600">
                 Use Current Location
