@@ -1,6 +1,5 @@
-import { Home, Map, User } from "@tamagui/lucide-icons";
+import { Home, PlusCircle, User } from "@tamagui/lucide-icons";
 import { Tabs } from "expo-router";
-import React from "react";
 import { useTheme } from "tamagui";
 
 export default function TabLayout() {
@@ -34,10 +33,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="map"
+        name="add"
         options={{
-          title: "Map",
-          tabBarIcon: ({ color }) => <Map color={color} size={24} />,
+          title: "Add",
+          tabBarIcon: ({ color }) => <PlusCircle color={color} size={30} />,
         }}
       />
       <Tabs.Screen

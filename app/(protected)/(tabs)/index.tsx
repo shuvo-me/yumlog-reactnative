@@ -1,5 +1,5 @@
-import { ListFilter, MapPin, Plus, Search, Star } from "@tamagui/lucide-icons";
-import { router, useRouter } from "expo-router";
+import { ListFilter, MapPin, Search, Star } from "@tamagui/lucide-icons";
+import { useRouter } from "expo-router";
 import {
   Button,
   Image,
@@ -96,21 +96,6 @@ export default function HomeScreen() {
         {/* Padding for Bottom Nav */}
         <YStack h={120} />
       </ScrollView>
-
-      {/* Floating Action Button */}
-      <Button
-        position="absolute"
-        bottom={50}
-        right={16}
-        width={60}
-        height={60}
-        circular
-        backgroundColor="#f26c0d" // primary color
-        icon={<Plus size={32} color="white" />}
-        elevation={5}
-        pressStyle={{ scale: 0.9, opacity: 0.9 }}
-        onPress={() => router.push("/add")}
-      />
     </YStack>
   );
 }
