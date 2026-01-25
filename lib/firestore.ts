@@ -37,7 +37,6 @@ export interface FoodEntry {
     spiciness: number;
     saltiness: number;
     umami: number;
-    wouldRecommend: boolean;
     mustTry: boolean;
     recommend: boolean;
     image?: string | undefined;

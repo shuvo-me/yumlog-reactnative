@@ -23,6 +23,7 @@ import {
   Label,
   Separator,
   Slider,
+  Spinner,
   Switch,
   Text,
   View,
@@ -54,7 +55,6 @@ const FoodEntrySchema = z.object({
     .number()
     .min(0, "Umami must be between 0 and 10")
     .max(10, "Umami must be between 0 and 10"),
-  wouldRecommend: z.boolean(),
   image: z.string().optional(),
   location: z.object({
     name: z.string().optional(),
@@ -76,7 +76,8 @@ export default function FoodEntryScreen() {
     control,
     formState: { isSubmitting, errors },
     watch,
-    setValue
+    setValue,
+    reset
   } = useForm<Schema>({
     resolver: zodResolver(FoodEntrySchema),
     defaultValues: {
@@ -87,7 +88,6 @@ export default function FoodEntryScreen() {
       spiciness: 0,
       saltiness: 0,
       umami: 0,
-      wouldRecommend: false,
       image: "",
       location: {
         name: "",
@@ -172,8 +172,9 @@ export default function FoodEntryScreen() {
       }
       console.log("Food Entry:", foodEntry);
       const res = await createFoodEntry(session.uid, foodEntry);
+      reset();
       console.log("Food Entry ID:", res);
-      Alert.alert("Success", "Food entry added successfully");
+      Alert.alert("Success", "Food entry added successfully", [{ text: "OK", onPress: () => router.back() }]);
     } catch (error) {
       console.error("Error when creating food entry:", error);
       Alert.alert("Error", "An unexpected error occurred while creating the food entry.");
@@ -290,7 +291,7 @@ export default function FoodEntryScreen() {
                 >
                   Price
                 </Label>
-                <ZStack ai="center" jc="center">
+                <ZStack ai="center" jc="center" height={50}>
                   <Controller
                     control={control}
                     name="price"
@@ -537,8 +538,9 @@ export default function FoodEntryScreen() {
           h={60}
           br="$4"
           pressStyle={{ scale: 0.95, opacity: 0.8 }}
-          icon={<Utensils color="white" />}
+          icon={isSubmitting ? <Spinner size={'small'} color="white" /> : <Utensils color="white" />}
           onPress={handleSubmit(onSubmit, onInvalid)}
+          disabled={isSubmitting}
         >
           <Text color="white" fontSize="$4" fow="800">
             Log Dish
