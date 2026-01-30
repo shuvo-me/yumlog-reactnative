@@ -7,7 +7,9 @@ import {
   limit,
   orderBy,
   query,
+  QueryDocumentSnapshot,
   setDoc,
+  startAfter,
   Timestamp,
   updateDoc,
   where,
@@ -192,7 +194,7 @@ export const getFoodEntry = async (
  */
 export const getUserFoodEntries = async (
   uid: string,
-  limitCount: number = 20
+  limitCount: number = 2
 ): Promise<FoodEntry[]> => {
   try {
     const entriesRef = collection(db, "users", uid, "food_entries");
@@ -206,6 +208,38 @@ export const getUserFoodEntries = async (
     return snapshot.docs.map((doc) => doc.data() as FoodEntry);
   } catch (error) {
     console.error("Error fetching user food entries:", error);
+    throw error;
+  }
+};
+
+/**
+ * Get paginated food entries for infinite scroll
+ */
+export const getPaginatedUserFoodEntries = async (
+  uid: string,
+  limitCount: number = 2,
+  lastDoc?: QueryDocumentSnapshot
+) => {
+  try {
+    const entriesRef = collection(db, "users", uid, "food_entries");
+    
+    let q = query(
+      entriesRef,
+      orderBy("created_at", "desc"),
+      limit(limitCount)
+    );
+
+    if (lastDoc) {
+      q = query(q, startAfter(lastDoc));
+    }
+
+    const snapshot = await getDocs(q);
+    const entries = snapshot.docs.map((doc) => doc.data() as FoodEntry);
+    const newLastDoc = snapshot.docs[snapshot.docs.length - 1];
+
+    return { entries, lastDoc: newLastDoc };
+  } catch (error) {
+    console.error("Error fetching paginated entries:", error);
     throw error;
   }
 };

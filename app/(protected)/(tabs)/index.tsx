@@ -1,15 +1,22 @@
-import { ListFilter, MapPin, Search, Star } from "@tamagui/lucide-icons";
+import { FoodEntry, getPaginatedUserFoodEntries } from "@/lib/firestore";
+import { useAuth } from "@/lib/store";
+import { ListFilter, MapPin, Search, ThumbsUp } from "@tamagui/lucide-icons";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useRouter } from "expo-router";
+import { QueryDocumentSnapshot } from "firebase/firestore";
+import { useState } from "react";
+import { FlatList, RefreshControl } from "react-native";
 import {
   Button,
   Image,
-  ScrollView,
+  Spinner,
   styled,
   Text,
   useTheme,
+  View,
   XStack,
   YStack,
-  ZStack,
+  ZStack
 } from "tamagui";
 
 /**
@@ -42,6 +49,53 @@ const FlavorTag = styled(XStack, {
  */
 export default function HomeScreen() {
   const theme = useTheme();
+  const { session } = useAuth();
+  const [refreshing, setRefreshing] = useState(false);
+
+  // Using TanStack Query v5 Infinite Query
+  const {
+    data,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    refetch,
+    isRefetching
+  } = useInfiniteQuery({
+    queryKey: ["home-feed-food-entries", session?.uid],
+    queryFn: ({ pageParam }: { pageParam: QueryDocumentSnapshot }) => getPaginatedUserFoodEntries(session?.uid as string, 1, pageParam),
+    initialPageParam: undefined,
+    getNextPageParam: (lastPage: any) => lastPage.lastDoc || undefined,
+    enabled: !!session?.uid,
+  });
+
+
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  };
+
+  const loadMore = () => {
+    if (hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  };
+
+  // Helper to generate tags from entry data
+  const getTagsForEntry = (entry: FoodEntry): Tag[] => {
+    const tags: Tag[] = [];
+    if (entry.spiciness > 5) tags.push({ label: "Spicy", emoji: "🔥", active: true });
+    if (entry.sweetness > 5) tags.push({ label: "Sweet", emoji: "🍬" });
+    if (entry.umami > 5) tags.push({ label: "Umami", emoji: "🍄" });
+    if (entry.saltiness > 5) tags.push({ label: "Salty", emoji: "🧂" });
+    if (entry.mustTry) tags.push({ label: "Must Try", emoji: "🌟", active: true });
+    return tags;
+  };
+
+  const entries = data?.pages.flatMap((page) => page.entries) || [];
+  console.log(entries)
 
   return (
     <YStack f={1} backgroundColor="$background">
@@ -65,37 +119,56 @@ export default function HomeScreen() {
         </XStack>
       </XStack>
 
-      <ScrollView p="$4" showsVerticalScrollIndicator={false}>
-        {/* Card 1: Ramen */}
-        <FoodItem
-          title="Spicy Miso Ramen"
-          location="Ramen Danbo"
-          distance="2.4 mi"
-          rating="4.8"
-          image="https://picsum.photos/id/199/800/600"
-          tags={[
-            { label: "Spicy", emoji: "🔥", active: true },
-            { label: "Savory", emoji: "🍜" },
-            { label: "Umami", emoji: "✨" },
-          ]}
+      {isLoading ? (
+        <YStack f={1} jc="center" ai="center">
+          <Spinner size="large" color="$primary" />
+        </YStack>
+      ) : (
+        <FlatList
+          data={entries}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item: entry }) => (
+            <View paddingHorizontal="$4">
+              <FoodItem
+                title={entry.dishName}
+                location={entry.restaurant}
+                distance={entry.location?.name || ""}
+                rating={entry.recommend ? "Rec" : ""}
+                image={entry.image || "https://picsum.photos/800/600"}
+                tags={getTagsForEntry(entry)}
+                recommend={entry.recommend}
+              />
+            </View>
+          )}
+          contentContainerStyle={{ paddingBottom: 120, paddingTop: 16 }}
+          showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+          onEndReached={() => {
+            console.log("end reached");
+            loadMore();
+          }}
+          onEndReachedThreshold={0.9}
+          ListFooterComponent={
+            isFetchingNextPage ? (
+              <YStack py="$4" ai="center">
+                <Spinner size="small" color="$primary" />
+              </YStack>
+            ) : null
+          }
+          ListEmptyComponent={
+            <YStack padding="$8" alignItems="center" gap="$4">
+              <Text fontSize="$6" color="$colorSecondary" textAlign="center">
+                No eats logged yet.
+              </Text>
+              <Text fontSize="$4" color="$text-muted" textAlign="center">
+                Go to the 'Add' tab to log your first delicious meal!
+              </Text>
+            </YStack>
+          }
         />
-
-        {/* Card 2: Fries */}
-        <FoodItem
-          title="Truffle Parmesan Fries"
-          location="The Burger Joint"
-          distance="0.8 mi"
-          rating="4.2"
-          image="https://picsum.photos/id/429/800/600"
-          tags={[
-            { label: "Salty", emoji: "🧂" },
-            { label: "Crispy", emoji: "🥔" },
-          ]}
-        />
-
-        {/* Padding for Bottom Nav */}
-        <YStack h={120} />
-      </ScrollView>
+      )}
     </YStack>
   );
 }
@@ -113,6 +186,7 @@ interface FoodItemProps {
   rating: string;
   image: string;
   tags: Tag[];
+  recommend?: boolean;
 }
 
 /**
@@ -125,33 +199,38 @@ function FoodItem({
   rating,
   image,
   tags,
+  recommend,
 }: FoodItemProps) {
   const router = useRouter();
+  const theme = useTheme();
+
   return (
     <FoodCard
       onPress={() => {
-        router.push("/details/1");
+        // router.push(`/details/${id}`); // TODO: Link to detail page
       }}
     >
       <ZStack w="100%" height={220}>
-        <Image source={{ uri: image }} width="100%" height="100%" />
-        {/* Rating Badge */}
-        <XStack
-          pos="absolute"
-          top={12}
-          right={12}
-          backgroundColor="rgba(0,0,0,0.6)"
-          px="$3"
-          py="$1.5"
-          borderRadius="$3"
-          ai="center"
-          gap="$1"
-        >
-          <Star size={14} fill="#f26c0d" color="#f26c0d" />
-          <Text color="white" fontWeight="700" fontSize={12}>
-            {rating}
-          </Text>
-        </XStack>
+        <Image source={{ uri: image }} width="100%" height="100%" objectFit="cover" />
+        {/* Recommend Badge */}
+        {recommend && (
+          <XStack
+            pos="absolute"
+            top={12}
+            right={12}
+            backgroundColor="rgba(0,0,0,0.6)"
+            px="$3"
+            py="$1.5"
+            borderRadius="$3"
+            ai="center"
+            gap="$1"
+          >
+            <ThumbsUp size={14} fill={theme.primary?.get() || "#6CB231"} color={theme.primary?.get() || "#6CB231"} />
+            <Text color="white" fontWeight="700" fontSize={12}>
+              Recommended
+            </Text>
+          </XStack>
+        )}
       </ZStack>
 
       <YStack p="$4" gap="$2">
@@ -160,9 +239,9 @@ function FoodItem({
             {title}
           </Text>
           <XStack ai="center" gap="$1">
-            <MapPin size={14} color="$colorFocus" />
+            <MapPin size={14} color={theme.colorSecondary?.get() || "#9FA19E"} />
             <Text color="$colorSecondary" fontSize={14}>
-              {location} • {distance}
+              {location} {distance ? `• ${distance}` : ""}
             </Text>
           </XStack>
         </YStack>
@@ -171,9 +250,9 @@ function FoodItem({
           {tags?.map((tag) => (
             <FlavorTag
               key={tag.label}
-              backgroundColor={tag.active ? "#392f28" : "$backgroundHover"}
+              backgroundColor={tag.active ? theme.accent?.get() || "#88CD4E" : "$backgroundHover"}
               borderWidth={1}
-              borderColor={tag.active ? "#f26c0d" : "transparent"}
+              borderColor={tag.active ? theme.primary?.get() || "#6CB231" : "transparent"}
             >
               <Text fontSize={12}>{tag.emoji}</Text>
               <Text fontSize={10} fontWeight="700" textTransform="uppercase">
