@@ -5,8 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Camera,
   Check,
-  LocateFixed,
-  Utensils
+  LocateFixed
 } from "@tamagui/lucide-icons";
 import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
@@ -192,18 +191,24 @@ export default function FoodEntryScreen() {
     <View f={1} bg="$background" pt={inset.top + 10} pb={inset.bottom + 10}>
       {/* 1. Sticky Header */}
       <XStack height={60} ai="center" jc="space-between" px="$4">
-        <Text fontSize="$5" fow="700">
+        <Button onPress={() => router.back()} disabled={isSubmitting}>
+          <Text fontSize="$4" >
+            Cancel
+          </Text>
+        </Button>
+        <Text fontSize="$5" fow="500">
           New Entry
         </Text>
         <Button
           chromeless
           p={0}
-          onPress={() => router.back()}
           pressStyle={{ opacity: 0.5 }}
+          onPress={handleSubmit(onSubmit, onInvalid)}
+          disabled={isSubmitting}
         >
-          <Text color="$text-muted" fontSize="$4">
-            Cancel
-          </Text>
+          {isSubmitting ? <Spinner size={'small'} color="white" /> : <Text color="$primary" fontSize="$4">
+            Save
+          </Text>}
         </Button>
 
       </XStack>
@@ -519,34 +524,6 @@ export default function FoodEntryScreen() {
           </YStack>
         </YStack>
       </ScrollView>
-
-      {/* Sticky Footer */}
-      <YStack
-        pos="absolute"
-        b={0}
-        l={0}
-        r={0}
-        p="$4"
-        pb="$8"
-        bg="$background-dark"
-        borderTopWidth={0.5}
-        boc="$borderColor"
-        zIndex={100}
-      >
-        <Button
-          bg="$primary"
-          h={60}
-          br="$4"
-          pressStyle={{ scale: 0.95, opacity: 0.8 }}
-          icon={isSubmitting ? <Spinner size={'small'} color="white" /> : <Utensils color="white" />}
-          onPress={handleSubmit(onSubmit, onInvalid)}
-          disabled={isSubmitting}
-        >
-          <Text color="white" fontSize="$4" fow="800">
-            Log Dish
-          </Text>
-        </Button>
-      </YStack>
     </View>
   );
 }
