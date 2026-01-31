@@ -101,32 +101,66 @@ export default function FoodEntryScreen() {
   const imageURI = watch("image");
 
   const pickImage = async () => {
-    try {
-      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-      if (status !== 'granted') {
-        Alert.alert(
-          "Permission Required",
-          "We need your permission to access photos to upload a dish image. Please enable it in settings.",
-          [{ text: "OK" }]
-        );
-        return;
-      }
-
-      const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ['images'],
-        allowsEditing: true,
-        aspect: [16, 9],
-        quality: 0.7,
-      });
-
-      if (!result.canceled && result.assets && result.assets.length > 0) {
-        setValue("image", result.assets[0].uri);
-      }
-    } catch (error) {
-      console.error("Error picking image:", error);
-      Alert.alert("Error", "An unexpected error occurred while picking the image.");
-    }
+    Alert.alert(
+      "Upload Photo",
+      "Choose a method to upload your dish photo",
+      [
+        {
+          text: "Take Photo",
+          onPress: async () => {
+            try {
+              const { status } = await ImagePicker.requestCameraPermissionsAsync();
+              if (status !== 'granted') {
+                Alert.alert("Permission Required", "Camera access is needed to take photos.");
+                return;
+              }
+              const result = await ImagePicker.launchCameraAsync({
+                allowsEditing: true,
+                aspect: [16, 9],
+                quality: 0.7,
+              });
+              if (!result.canceled && result.assets && result.assets.length > 0) {
+                setValue("image", result.assets[0].uri);
+              }
+            } catch (error: any) {
+              console.error("Error taking photo:", error);
+              if (error.code === 'ERR_CAMERA_UNAVAILABLE_ON_SIMULATOR' || error.message?.includes('simulator')) {
+                Alert.alert("Camera Unavailable", "Camera is not available on the simulator. Please choose 'Choose from Library' or test on a real device.");
+              } else {
+                Alert.alert("Error", "Failed to open camera.");
+              }
+            }
+          }
+        },
+        {
+          text: "Choose from Library",
+          onPress: async () => {
+            try {
+              const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+              if (status !== 'granted') {
+                Alert.alert("Permission Required", "Gallery access is needed to upload photos.");
+                return;
+              }
+              const result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ['images'],
+                allowsEditing: true,
+                aspect: [16, 9],
+                quality: 0.7,
+              });
+              if (!result.canceled && result.assets && result.assets.length > 0) {
+                setValue("image", result.assets[0].uri);
+              }
+            } catch (error) {
+              console.error("Error picking image:", error);
+            }
+          }
+        },
+        {
+          text: "Cancel",
+          style: "cancel"
+        }
+      ]
+    );
   };
 
   const handleUseLocation = async () => {
@@ -463,20 +497,26 @@ export default function FoodEntryScreen() {
 
             </XStack>
 
-            <XStack ai="center" gap="$3" p="$3">
-              <Controller
-                control={control}
-                name="mustTry"
-                render={({ field: { onChange, value } }) => (
-                  <Checkbox size="$5" boc="$borderColor" bg="$background" onCheckedChange={onChange} checked={value}>
+            <Controller
+              control={control}
+              name="mustTry"
+              render={({ field: { onChange, value } }) => (
+                <XStack ai="center" gap="$3" p="$3" onPress={() => onChange(!value)}>
+                  <Checkbox
+                    size="$5"
+                    boc="$borderColor"
+                    bg="$background"
+                    checked={value}
+                    pointerEvents="none" // Pass touches to parent XStack
+                  >
                     <Checkbox.Indicator>
                       <Check color="$primary" />
                     </Checkbox.Indicator>
                   </Checkbox>
-                )}
-              />
-              <Text fow="500">Must Try Again</Text>
-            </XStack>
+                  <Text fow="500">Must Try Again</Text>
+                </XStack>
+              )}
+            />
           </YStack>
 
           {/* Section 4: Location Map */}
