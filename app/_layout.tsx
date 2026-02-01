@@ -1,6 +1,12 @@
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import config from "@/tamagui.config";
 import {
+  DMSans_400Regular,
+  DMSans_500Medium,
+  DMSans_700Bold,
+  useFonts,
+} from "@expo-google-fonts/dm-sans";
+import {
   DarkTheme,
   DefaultTheme,
   ThemeProvider,
@@ -18,6 +24,13 @@ const queryClient = new QueryClient();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const [loaded] = useFonts({
+    DMSans_400Regular,
+    DMSans_500Medium,
+    DMSans_700Bold,
+  });
+
+  if (!loaded) return null;
 
   return (
     <QueryClientProvider client={queryClient}>

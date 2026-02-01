@@ -58,18 +58,16 @@ const dark = {
 };
 
 // 3. Keep Font and Animation logic
-const interFont = createFont({
-  family: 'Inter',
-  weight: { 400: '400', 600: '600', 700: '700', 800: '800', 900: '900' },
+const dmSansFont = createFont({
+  family: 'DMSans',
+  weight: { 400: '400', 500: '500', 700: '700' },
   size: { 1: 12, 2: 14, 3: 16, 4: 18, 5: 20, 6: 24, 7: 32, 8: 40, 9: 48, 10: 56 },
   lineHeight: { 1: 16, 2: 18, 3: 20, 4: 24, 5: 26, 6: 30, 7: 38, 8: 48, 9: 56, 10: 64 },
-  letterSpacing: { 400: 0, 700: -0.5, 800: -1, 900: -1.5 },
+  letterSpacing: { 400: 0, 700: -0.5 },
   face: {
-    400: { normal: 'Inter_400Regular' },
-    600: { normal: 'Inter_600SemiBold' },
-    700: { normal: 'Inter_700Bold' },
-    800: { normal: 'Inter_800ExtraBold' },
-    900: { normal: 'Inter_900Black' },
+    400: { normal: 'DMSans_400Regular' },
+    500: { normal: 'DMSans_500Medium' },
+    700: { normal: 'DMSans_700Bold' },
   },
 });
 
@@ -83,8 +81,8 @@ const animations = createAnimations({
 // 4. Final Config
 const config = createTamagui({
   fonts: {
-    heading: interFont,
-    body: interFont,
+    heading: dmSansFont,
+    body: dmSansFont,
   },
   themes: {
     light,
