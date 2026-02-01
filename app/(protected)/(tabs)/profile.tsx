@@ -10,7 +10,6 @@ import {
 } from "@tamagui/lucide-icons";
 import { useMutation } from "@tanstack/react-query";
 import { router } from "expo-router";
-import React from "react";
 import {
   Avatar,
   Button,
@@ -161,6 +160,7 @@ export default function ProfileScreen() {
           {/* Menu List */}
           <YStack gap="$3">
             <MenuAction
+              onPress={() => router.push("/my-entries")}
               icon={BookOpen}
               iconBg="#392f28"
               iconColor="$primary"

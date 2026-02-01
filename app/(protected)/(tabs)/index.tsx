@@ -1,52 +1,29 @@
+import FoodCard from "@/components/FoodCard";
 import { FoodEntry, getPaginatedUserFoodEntries } from "@/lib/firestore";
 import { useAuth } from "@/lib/store";
-import { ListFilter, MapPin, Search, ThumbsUp } from "@tamagui/lucide-icons";
+import { ListFilter, Search } from "@tamagui/lucide-icons";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useRouter } from "expo-router";
 import { QueryDocumentSnapshot } from "firebase/firestore";
 import { useState } from "react";
 import { FlatList, RefreshControl } from "react-native";
 import {
   Button,
-  Image,
   Spinner,
-  styled,
   Text,
   useTheme,
   View,
   XStack,
-  YStack,
-  ZStack
+  YStack
 } from "tamagui";
 
-/**
- * Custom Styled Components for "Your Eats"
- */
-const FoodCard = styled(YStack, {
-  name: "FoodCard",
-  backgroundColor: "$backgroundSecondary",
-  borderRadius: "$4",
-  overflow: "hidden",
-  marginBottom: "$4",
-  shadowColor: "#000",
-  shadowOffset: { width: 0, height: 2 },
-  shadowOpacity: 0.1,
-  shadowRadius: 8,
-  // Hover/Press effect for mobile/web
-  pressStyle: { scale: 0.98 },
-});
 
-const FlavorTag = styled(XStack, {
-  paddingHorizontal: "$3",
-  paddingVertical: "$1.5",
-  borderRadius: "$2",
-  gap: "$1.5",
-  alignItems: "center",
-});
 
-/**
- * Main Screen Component
- */
+interface Tag {
+  label: string;
+  emoji: string;
+  active?: boolean;
+}
+
 export default function HomeScreen() {
   const theme = useTheme();
   const { session } = useAuth();
@@ -129,14 +106,13 @@ export default function HomeScreen() {
           keyExtractor={(item) => item.id}
           renderItem={({ item: entry }) => (
             <View paddingHorizontal="$4">
-              <FoodItem
+              <FoodCard
                 title={entry.dishName}
                 location={entry.restaurant}
                 distance={entry.location?.name || ""}
                 rating={entry.recommend ? "Rec" : ""}
                 image={entry.image || "https://picsum.photos/800/600"}
                 tags={getTagsForEntry(entry)}
-                recommend={entry.recommend}
               />
             </View>
           )}
@@ -170,98 +146,5 @@ export default function HomeScreen() {
         />
       )}
     </YStack>
-  );
-}
-
-interface Tag {
-  label: string;
-  emoji: string;
-  active?: boolean;
-}
-
-interface FoodItemProps {
-  title: string;
-  location: string;
-  distance: string;
-  rating: string;
-  image: string;
-  tags: Tag[];
-  recommend?: boolean;
-}
-
-/**
- * Card Sub-Component
- */
-function FoodItem({
-  title,
-  location,
-  distance,
-  rating,
-  image,
-  tags,
-  recommend,
-}: FoodItemProps) {
-  const router = useRouter();
-  const theme = useTheme();
-
-  return (
-    <FoodCard
-      onPress={() => {
-        // router.push(`/details/${id}`); // TODO: Link to detail page
-      }}
-    >
-      <ZStack w="100%" height={220}>
-        <Image source={{ uri: image }} width="100%" height="100%" objectFit="cover" />
-        {/* Recommend Badge */}
-        {recommend && (
-          <XStack
-            pos="absolute"
-            top={12}
-            right={12}
-            backgroundColor="rgba(0,0,0,0.6)"
-            px="$3"
-            py="$1.5"
-            borderRadius="$3"
-            ai="center"
-            gap="$1"
-          >
-            <ThumbsUp size={14} fill={theme.primary?.get() || "#6CB231"} color={theme.primary?.get() || "#6CB231"} />
-            <Text color="white" fontWeight="700" fontSize={12}>
-              Recommended
-            </Text>
-          </XStack>
-        )}
-      </ZStack>
-
-      <YStack p="$4" gap="$2">
-        <YStack>
-          <Text fontSize={18} fontWeight="700">
-            {title}
-          </Text>
-          <XStack ai="center" gap="$1">
-            <MapPin size={14} color={theme.colorSecondary?.get() || "#9FA19E"} />
-            <Text color="$colorSecondary" fontSize={14}>
-              {location} {distance ? `• ${distance}` : ""}
-            </Text>
-          </XStack>
-        </YStack>
-
-        <XStack gap="$2" flexWrap="wrap" marginTop="$2">
-          {tags?.map((tag) => (
-            <FlavorTag
-              key={tag.label}
-              backgroundColor={tag.active ? theme.accent?.get() || "#88CD4E" : "$backgroundHover"}
-              borderWidth={1}
-              borderColor={tag.active ? theme.primary?.get() || "#6CB231" : "transparent"}
-            >
-              <Text fontSize={12}>{tag.emoji}</Text>
-              <Text fontSize={10} fontWeight="700" textTransform="uppercase">
-                {tag.label}
-              </Text>
-            </FlavorTag>
-          ))}
-        </XStack>
-      </YStack>
-    </FoodCard>
   );
 }

@@ -1,6 +1,5 @@
 import { useAuth } from "@/lib/store";
 import { Redirect, Stack } from "expo-router";
-import React from "react";
 import { Spinner, YStack } from "tamagui";
 
 export default function _layout() {
@@ -31,6 +30,13 @@ export default function _layout() {
       />
       <Stack.Screen
         name="add"
+        options={{
+          headerShown: false,
+          animation: "slide_from_right", // Smooth mobile transition
+        }}
+      />
+      <Stack.Screen
+        name="my-entries"
         options={{
           headerShown: false,
           animation: "slide_from_right", // Smooth mobile transition
