@@ -167,13 +167,7 @@ export default function ProfileScreen() {
               title="My Entries"
               subtitle="View all your past logs"
             />
-            <MenuAction
-              icon={Heart}
-              iconBg="#392222"
-              iconColor="#ef4343ff"
-              title="Favorite Dishes"
-              subtitle="Your top rated meals"
-            />
+
             <MenuAction
               icon={Settings}
               iconBg="#322a24"

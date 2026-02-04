@@ -12,6 +12,8 @@ const customTokens = createTokens({
     primary: '#f26c0d', // Orange used in Dark HTML
     primaryBurnt: '#E0580C', // Burnt Orange from Light HTML
     limeGreen: '#65A30D',
+    limeGreen_20: '#a3e63533',
+    limeGreen_10: '#a3e6351a',
     
     // Dark Mode Palette (from 1st HTML)
     darkBg: '#221710',
@@ -39,6 +41,8 @@ const light = {
   borderColor: customTokens.color.lightBorder,
   accent: customTokens.color.primaryBurnt,
   success: customTokens.color.limeGreen,
+  success_20: customTokens.color.limeGreen_20,
+  success_10: customTokens.color.limeGreen_10,
   cardBackground: customTokens.color.lightCard,
   shadowColor: 'rgba(0,0,0,0.06)',
   error: customTokens.color.errorLight,
@@ -52,6 +56,8 @@ const dark = {
   borderColor: customTokens.color.darkBorder,
   accent: customTokens.color.primary,
   success: customTokens.color.limeGreen,
+  success_20: customTokens.color.limeGreen_20,
+  success_10: customTokens.color.limeGreen_10,
   cardBackground: customTokens.color.darkCard,
   shadowColor: 'rgba(0,0,0,0.4)',
   error: customTokens.color.errorDark,
