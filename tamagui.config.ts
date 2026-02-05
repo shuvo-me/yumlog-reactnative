@@ -10,6 +10,9 @@ const customTokens = createTokens({
     ...defaultTokens.color,
     // Brand Accents from HTML
     primary: '#f26c0d', // Orange used in Dark HTML
+    primary_20: '#f26c0d33',
+    primary_10: '#f26c0d1a',
+    
     primaryBurnt: '#E0580C', // Burnt Orange from Light HTML
     limeGreen: '#65A30D',
     limeGreen_20: '#a3e63533',

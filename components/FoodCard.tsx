@@ -22,16 +22,17 @@ const Card = styled(YStack, {
     animation: 'quick',
 });
 
-export default function FoodCard({ title, location, distance, rating, tags, image }: {
+export default function FoodCard({ title, location, distance, rating, tags, image, onPress }: {
     title: string;
     location: string;
     distance: string;
     rating: string;
     tags: { emoji: string; label: string }[];
     image: string;
+    onPress: () => void;
 }) {
     return (
-        <Card>
+        <Card onPress={onPress}>
             <ZStack width="100%" height={220}>
                 <Image
                     source={{ uri: image, width: 400, height: 220 }}

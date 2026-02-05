@@ -3,6 +3,7 @@ import { FoodEntry, getPaginatedUserFoodEntries } from "@/lib/firestore";
 import { useAuth } from "@/lib/store";
 import { ListFilter, Search } from "@tamagui/lucide-icons";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { router } from "expo-router";
 import { QueryDocumentSnapshot } from "firebase/firestore";
 import { useState } from "react";
 import { FlatList, RefreshControl } from "react-native";
@@ -113,6 +114,7 @@ export default function HomeScreen() {
                 rating={entry.recommend ? "Rec" : ""}
                 image={entry.image || "https://picsum.photos/800/600"}
                 tags={getTagsForEntry(entry)}
+                onPress={() => router.push(`/details/${entry.id}`)}
               />
             </View>
           )}
