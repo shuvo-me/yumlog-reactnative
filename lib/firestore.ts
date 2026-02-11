@@ -463,6 +463,154 @@ export const getRestaurantsByCuisine = async (
   }
 };
 
+// ============= SEARCH & FILTER OPERATIONS =============
+
+/**
+ * Search food entries by text (dish name, restaurant, location)
+ */
+export const searchFoodEntries = async (
+  uid: string,
+  searchTerm: string,
+  limitCount: number = 50
+): Promise<FoodEntry[]> => {
+  try {
+    if (!searchTerm.trim()) {
+      return await getUserFoodEntries(uid, limitCount);
+    }
+
+    const entriesRef = collection(db, "users", uid, "food_entries");
+    const snapshot = await getDocs(entriesRef);
+    const allEntries = snapshot.docs.map((doc) => doc.data() as FoodEntry);
+
+    // Client-side text search (Firebase doesn't support full-text search natively)
+    const filtered = allEntries.filter((entry) => {
+      const searchLower = searchTerm.toLowerCase();
+      return (
+        entry.dishName?.toLowerCase().includes(searchLower) ||
+        entry.restaurant?.toLowerCase().includes(searchLower) ||
+        entry.location?.name?.toLowerCase().includes(searchLower)
+      );
+    });
+
+    // Sort by relevance (exact matches first, then by created_at)
+    filtered.sort((a, b) => {
+      const aExact = a.dishName?.toLowerCase() === searchTerm.toLowerCase() ? 1 : 0;
+      const bExact = b.dishName?.toLowerCase() === searchTerm.toLowerCase() ? 1 : 0;
+      
+      if (aExact !== bExact) return bExact - aExact;
+      
+      return b.created_at.toMillis() - a.created_at.toMillis();
+    });
+
+    return filtered.slice(0, limitCount);
+  } catch (error) {
+    console.error("Error searching food entries:", error);
+    throw error;
+  }
+};
+
+/**
+ * Get paginated search results for infinite scroll
+ */
+export const getPaginatedSearchResults = async (
+  uid: string,
+  searchTerm: string,
+  limitCount: number = 2,
+  lastDoc?: QueryDocumentSnapshot
+) => {
+  try {
+    // For search, we need to fetch all and filter client-side
+    // In production, you'd use Algolia or similar for full-text search
+    const entriesRef = collection(db, "users", uid, "food_entries");
+    const snapshot = await getDocs(entriesRef);
+    const allEntries = snapshot.docs.map((doc) => doc.data() as FoodEntry);
+
+    // Apply text search filter
+    let filtered = allEntries;
+    if (searchTerm.trim()) {
+      const searchLower = searchTerm.toLowerCase();
+      filtered = allEntries.filter((entry) => {
+        return (
+          entry.dishName?.toLowerCase().includes(searchLower) ||
+          entry.restaurant?.toLowerCase().includes(searchLower) ||
+          entry.location?.name?.toLowerCase().includes(searchLower)
+        );
+      });
+
+      // Sort by relevance
+      filtered.sort((a, b) => {
+        const aExact = a.dishName?.toLowerCase() === searchTerm.toLowerCase() ? 1 : 0;
+        const bExact = b.dishName?.toLowerCase() === searchTerm.toLowerCase() ? 1 : 0;
+        
+        if (aExact !== bExact) return bExact - aExact;
+        
+        return b.created_at.toMillis() - a.created_at.toMillis();
+      });
+    } else {
+      // Sort by created_at when no search term
+      filtered.sort((a, b) => b.created_at.toMillis() - a.created_at.toMillis());
+    }
+
+    // Handle pagination
+    const startIndex = lastDoc ? 
+      filtered.findIndex(entry => entry.id === lastDoc.id) + 1 : 0;
+    
+    const paginatedEntries = filtered.slice(startIndex, startIndex + limitCount);
+    const newLastDoc = paginatedEntries.length > 0 ? 
+      snapshot.docs.find(doc => doc.id === paginatedEntries[paginatedEntries.length - 1].id) : 
+      undefined;
+
+    return { 
+      entries: paginatedEntries, 
+      lastDoc: newLastDoc,
+      totalCount: filtered.length
+    };
+  } catch (error) {
+    console.error("Error fetching paginated search results:", error);
+    throw error;
+  }
+};
+
+/**
+ * Filter food entries by taste profiles and other criteria
+ */
+export const filterFoodEntries = async (
+  uid: string,
+  filters: {
+    minSpiciness?: number;
+    minSweetness?: number;
+    minSaltiness?: number;
+    minUmami?: number;
+    mustTry?: boolean;
+    recommend?: boolean;
+    limitCount?: number;
+  }
+): Promise<FoodEntry[]> => {
+  try {
+    const entriesRef = collection(db, "users", uid, "food_entries");
+    const snapshot = await getDocs(entriesRef);
+    const allEntries = snapshot.docs.map((doc) => doc.data() as FoodEntry);
+
+    const filtered = allEntries.filter((entry) => {
+      if (filters.minSpiciness !== undefined && entry.spiciness < filters.minSpiciness) return false;
+      if (filters.minSweetness !== undefined && entry.sweetness < filters.minSweetness) return false;
+      if (filters.minSaltiness !== undefined && entry.saltiness < filters.minSaltiness) return false;
+      if (filters.minUmami !== undefined && entry.umami < filters.minUmami) return false;
+      if (filters.mustTry !== undefined && entry.mustTry !== filters.mustTry) return false;
+      if (filters.recommend !== undefined && entry.recommend !== filters.recommend) return false;
+      return true;
+    });
+
+    // Sort by created_at (most recent first)
+    filtered.sort((a, b) => b.created_at.toMillis() - a.created_at.toMillis());
+
+    return filtered.slice(0, filters.limitCount || 50);
+  } catch (error) {
+    console.error("Error filtering food entries:", error);
+    throw error;
+  }
+};
+
 // ============= STATS & ANALYTICS =============
 
 /**
@@ -476,11 +624,14 @@ export const getUserStats = async (uid: string) => {
       total_entries: entries.length,
       average_rating:
         entries.length > 0
-          ? entries.reduce((sum, e) => sum + e.rating, 0) / entries.length
+          ? entries.reduce((sum, e) => sum + (e.recommend ? 1 : 0), 0) / entries.length
           : 0,
       favorite_cuisine: getFavoriteCuisine(entries),
-      restaurant_count: new Set(entries.map((e) => e.restaurant_name)).size,
-      total_spent: entries.reduce((sum, e) => sum + (e.price || 0), 0),
+      restaurant_count: new Set(entries.map((e) => e.restaurant)).size,
+      total_spent: entries.reduce((sum, e) => {
+        const price = typeof e.price === 'string' ? parseFloat(e.price) : (e.price || 0);
+        return sum + price;
+      }, 0),
     };
 
     return stats;
@@ -495,7 +646,9 @@ export const getUserStats = async (uid: string) => {
  */
 function getFavoriteCuisine(entries: FoodEntry[]): string {
   const cuisineCounts = entries.reduce((acc, entry) => {
-    acc[entry.cuisine_type] = (acc[entry.cuisine_type] || 0) + 1;
+    // For now, use restaurant as cuisine type since cuisine_type isn't in FoodEntry
+    const key = entry.restaurant || "Unknown";
+    acc[key] = (acc[key] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
 
