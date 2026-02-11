@@ -44,4 +44,7 @@ app-example
 
 GoogleService-Info.plist
 AGENTS.md
+serviceAccountKey.json
+package-lock.json
+yarn.lock
 

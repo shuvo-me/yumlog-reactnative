@@ -1,0 +1,2002 @@
+[
+  {
+    "id": "a4d7cfba-8524-4809-b360-475afb78d8ba",
+    "dishName": "Coffee Dish Example 1",
+    "price": "41.37",
+    "restaurant": "Starbucks",
+    "sweetness": 5,
+    "spiciness": 5,
+    "saltiness": 4,
+    "umami": 5,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 6",
+      "latitude": "43.0706",
+      "longitude": "-93.4542"
+    },
+    "created_at": "2025-01-21T07:21:18.892Z",
+    "updated_at": "2025-01-21T07:21:18.892Z"
+  },
+  {
+    "id": "322e07ae-6927-470b-ad2d-aa6a1fa1dd41",
+    "dishName": "Ethnic Dish Example 2",
+    "price": "9.12",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 3,
+    "spiciness": 4,
+    "saltiness": 10,
+    "umami": 8,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 7",
+      "latitude": "37.6486",
+      "longitude": "-112.1714"
+    },
+    "created_at": "2025-06-12T07:35:34.518Z",
+    "updated_at": "2025-06-12T07:35:34.518Z"
+  },
+  {
+    "id": "527a0571-2e08-42ac-8dde-8c4bd624e8a9",
+    "dishName": "Ethnic Dish Example 3",
+    "price": "18.94",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 8,
+    "spiciness": 7,
+    "saltiness": 5,
+    "umami": 4,
+    "mustTry": true,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 2",
+      "latitude": "34.7111",
+      "longitude": "-90.4093"
+    },
+    "created_at": "2025-06-27T07:28:40.082Z",
+    "updated_at": "2025-06-27T07:28:40.082Z"
+  },
+  {
+    "id": "36c89e90-0d41-45ff-bfaf-e78733b5f38f",
+    "dishName": "Fast Food Dish Example 4",
+    "price": "34.34",
+    "restaurant": "McDonald's",
+    "sweetness": 3,
+    "spiciness": 10,
+    "saltiness": 8,
+    "umami": 6,
+    "mustTry": true,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 7",
+      "latitude": "47.7542",
+      "longitude": "-99.0574"
+    },
+    "created_at": "2025-02-10T21:27:33.655Z",
+    "updated_at": "2025-02-10T21:27:33.655Z"
+  },
+  {
+    "id": "220b1af6-1952-490d-ba92-52f9f38d1a4a",
+    "dishName": "Fast Food Dish Example 5",
+    "price": "33.18",
+    "restaurant": "Chipotle",
+    "sweetness": 7,
+    "spiciness": 9,
+    "saltiness": 9,
+    "umami": 7,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 9",
+      "latitude": "31.3466",
+      "longitude": "-73.1225"
+    },
+    "created_at": "2025-03-30T18:33:39.668Z",
+    "updated_at": "2025-03-30T18:33:39.668Z"
+  },
+  {
+    "id": "ab15b16d-a789-495c-812c-fa208bfaaa7c",
+    "dishName": "Specialty Dish Example 6",
+    "price": "48.37",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 6,
+    "spiciness": 2,
+    "saltiness": 1,
+    "umami": 10,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 6",
+      "latitude": "39.9817",
+      "longitude": "-94.3481"
+    },
+    "created_at": "2025-11-23T17:32:22.038Z",
+    "updated_at": "2025-11-23T17:32:22.038Z"
+  },
+  {
+    "id": "8d5200f6-fbf2-47a3-82a9-ecfe36ea7f32",
+    "dishName": "Fast Food Dish Example 7",
+    "price": "8.61",
+    "restaurant": "McDonald's",
+    "sweetness": 1,
+    "spiciness": 6,
+    "saltiness": 2,
+    "umami": 5,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 3",
+      "latitude": "39.4439",
+      "longitude": "-122.5873"
+    },
+    "created_at": "2025-06-17T04:10:14.112Z",
+    "updated_at": "2025-06-17T04:10:14.112Z"
+  },
+  {
+    "id": "7dc1cea6-78e5-4a15-8ae0-38f2d277dc6a",
+    "dishName": "Specialty Dish Example 8",
+    "price": "39.56",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 5,
+    "spiciness": 7,
+    "saltiness": 2,
+    "umami": 5,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 8",
+      "latitude": "31.8812",
+      "longitude": "-115.9271"
+    },
+    "created_at": "2025-06-26T08:14:11.486Z",
+    "updated_at": "2025-06-26T08:14:11.486Z"
+  },
+  {
+    "id": "82d3d440-3907-4a59-8c20-7674d26e47c0",
+    "dishName": "Ethnic Dish Example 9",
+    "price": "42.18",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 1,
+    "spiciness": 5,
+    "saltiness": 3,
+    "umami": 0,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 8",
+      "latitude": "34.6623",
+      "longitude": "-78.6604"
+    },
+    "created_at": "2025-07-02T23:47:20.445Z",
+    "updated_at": "2025-07-02T23:47:20.445Z"
+  },
+  {
+    "id": "a35cc81b-75e4-4063-8a68-fbac26bfa76b",
+    "dishName": "Coffee Dish Example 10",
+    "price": "34.29",
+    "restaurant": "Starbucks",
+    "sweetness": 0,
+    "spiciness": 8,
+    "saltiness": 0,
+    "umami": 0,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 7",
+      "latitude": "47.6041",
+      "longitude": "-91.6087"
+    },
+    "created_at": "2025-04-19T09:46:55.411Z",
+    "updated_at": "2025-04-19T09:46:55.411Z"
+  },
+  {
+    "id": "8b45a4e5-a466-45df-960d-f314048c3449",
+    "dishName": "Coffee Dish Example 11",
+    "price": "35.28",
+    "restaurant": "Starbucks",
+    "sweetness": 8,
+    "spiciness": 8,
+    "saltiness": 7,
+    "umami": 9,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 2",
+      "latitude": "47.3088",
+      "longitude": "-106.7079"
+    },
+    "created_at": "2025-10-15T11:41:52.200Z",
+    "updated_at": "2025-10-15T11:41:52.200Z"
+  },
+  {
+    "id": "bd5f33f9-8e15-4d3f-80d8-333e562253b5",
+    "dishName": "Casual Dish Example 12",
+    "price": "27.06",
+    "restaurant": "Olive Garden",
+    "sweetness": 9,
+    "spiciness": 4,
+    "saltiness": 8,
+    "umami": 9,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 4",
+      "latitude": "38.4979",
+      "longitude": "-97.7512"
+    },
+    "created_at": "2025-01-27T19:39:11.349Z",
+    "updated_at": "2025-01-27T19:39:11.349Z"
+  },
+  {
+    "id": "38d714a1-fae9-471a-b67a-506fb798c140",
+    "dishName": "Fast Food Dish Example 13",
+    "price": "15.67",
+    "restaurant": "McDonald's",
+    "sweetness": 4,
+    "spiciness": 6,
+    "saltiness": 10,
+    "umami": 8,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 2",
+      "latitude": "40.5394",
+      "longitude": "-120.1010"
+    },
+    "created_at": "2025-05-16T01:42:17.453Z",
+    "updated_at": "2025-05-16T01:42:17.453Z"
+  },
+  {
+    "id": "acf50346-d1a4-415d-8cf0-d7bb775e0757",
+    "dishName": "Casual Dish Example 14",
+    "price": "14.38",
+    "restaurant": "Olive Garden",
+    "sweetness": 0,
+    "spiciness": 4,
+    "saltiness": 10,
+    "umami": 3,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 9",
+      "latitude": "33.6080",
+      "longitude": "-83.1458"
+    },
+    "created_at": "2026-01-23T21:46:44.670Z",
+    "updated_at": "2026-01-23T21:46:44.670Z"
+  },
+  {
+    "id": "81ff84ff-05ca-4d4d-a3b8-f31f57dbfb8a",
+    "dishName": "Fast Food Dish Example 15",
+    "price": "40.80",
+    "restaurant": "McDonald's",
+    "sweetness": 7,
+    "spiciness": 4,
+    "saltiness": 10,
+    "umami": 6,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 10",
+      "latitude": "36.5075",
+      "longitude": "-74.9467"
+    },
+    "created_at": "2025-04-15T23:25:27.871Z",
+    "updated_at": "2025-04-15T23:25:27.871Z"
+  },
+  {
+    "id": "5e4c35f9-8df6-43a7-bf42-e1222617ae81",
+    "dishName": "Ethnic Dish Example 16",
+    "price": "17.26",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 0,
+    "spiciness": 6,
+    "saltiness": 0,
+    "umami": 6,
+    "mustTry": true,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 6",
+      "latitude": "40.7375",
+      "longitude": "-78.8220"
+    },
+    "created_at": "2025-08-01T14:27:03.691Z",
+    "updated_at": "2025-08-01T14:27:03.691Z"
+  },
+  {
+    "id": "11d125bb-d1cc-4130-89ba-e6fec925735f",
+    "dishName": "Ethnic Dish Example 17",
+    "price": "44.04",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 3,
+    "spiciness": 2,
+    "saltiness": 10,
+    "umami": 0,
+    "mustTry": true,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 3",
+      "latitude": "42.2354",
+      "longitude": "-109.9445"
+    },
+    "created_at": "2025-10-15T19:37:36.582Z",
+    "updated_at": "2025-10-15T19:37:36.582Z"
+  },
+  {
+    "id": "182f9e91-a0f7-4591-a40b-07180cbd59e2",
+    "dishName": "Casual Dish Example 18",
+    "price": "7.53",
+    "restaurant": "Olive Garden",
+    "sweetness": 0,
+    "spiciness": 1,
+    "saltiness": 0,
+    "umami": 0,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 10",
+      "latitude": "27.5719",
+      "longitude": "-77.0506"
+    },
+    "created_at": "2025-09-02T13:54:10.567Z",
+    "updated_at": "2025-09-02T13:54:10.567Z"
+  },
+  {
+    "id": "f65d2651-1c81-425a-a493-c5a3a925775a",
+    "dishName": "Ethnic Dish Example 19",
+    "price": "19.82",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 2,
+    "spiciness": 7,
+    "saltiness": 6,
+    "umami": 8,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 6",
+      "latitude": "37.9188",
+      "longitude": "-104.3456"
+    },
+    "created_at": "2025-03-05T12:18:07.335Z",
+    "updated_at": "2025-03-05T12:18:07.335Z"
+  },
+  {
+    "id": "5ebff3f4-8bd4-48bd-a30f-6888cfec7833",
+    "dishName": "Fast Food Dish Example 20",
+    "price": "42.83",
+    "restaurant": "Chipotle",
+    "sweetness": 9,
+    "spiciness": 0,
+    "saltiness": 6,
+    "umami": 0,
+    "mustTry": true,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 8",
+      "latitude": "30.6618",
+      "longitude": "-88.4925"
+    },
+    "created_at": "2025-01-31T02:03:39.323Z",
+    "updated_at": "2025-01-31T02:03:39.323Z"
+  },
+  {
+    "id": "2e557e5d-2bc7-47ee-9a2c-3fd045d4d860",
+    "dishName": "Coffee Dish Example 21",
+    "price": "31.69",
+    "restaurant": "Starbucks",
+    "sweetness": 7,
+    "spiciness": 10,
+    "saltiness": 0,
+    "umami": 8,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 6",
+      "latitude": "26.6262",
+      "longitude": "-114.7781"
+    },
+    "created_at": "2025-04-01T04:23:29.024Z",
+    "updated_at": "2025-04-01T04:23:29.024Z"
+  },
+  {
+    "id": "1b4aff36-2d34-420a-b319-cb15a75288c1",
+    "dishName": "Specialty Dish Example 22",
+    "price": "25.57",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 7,
+    "spiciness": 4,
+    "saltiness": 9,
+    "umami": 1,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 6",
+      "latitude": "41.8239",
+      "longitude": "-118.8885"
+    },
+    "created_at": "2025-04-09T09:43:36.649Z",
+    "updated_at": "2025-04-09T09:43:36.649Z"
+  },
+  {
+    "id": "36d998cd-18ad-4e94-a238-e04efb850752",
+    "dishName": "Casual Dish Example 23",
+    "price": "19.00",
+    "restaurant": "Olive Garden",
+    "sweetness": 4,
+    "spiciness": 1,
+    "saltiness": 8,
+    "umami": 5,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 9",
+      "latitude": "47.8969",
+      "longitude": "-115.1686"
+    },
+    "created_at": "2025-12-11T12:35:09.829Z",
+    "updated_at": "2025-12-11T12:35:09.829Z"
+  },
+  {
+    "id": "77b215cd-76ad-46f7-a5de-c798f00a15fd",
+    "dishName": "Specialty Dish Example 24",
+    "price": "46.79",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 6,
+    "spiciness": 2,
+    "saltiness": 3,
+    "umami": 4,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 10",
+      "latitude": "32.5353",
+      "longitude": "-122.7087"
+    },
+    "created_at": "2025-04-13T06:04:39.463Z",
+    "updated_at": "2025-04-13T06:04:39.463Z"
+  },
+  {
+    "id": "0bc42aeb-552c-4821-850f-7e4c26f2150b",
+    "dishName": "Casual Dish Example 25",
+    "price": "37.48",
+    "restaurant": "Olive Garden",
+    "sweetness": 2,
+    "spiciness": 9,
+    "saltiness": 1,
+    "umami": 3,
+    "mustTry": true,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 5",
+      "latitude": "24.5428",
+      "longitude": "-110.1586"
+    },
+    "created_at": "2026-01-30T16:32:59.006Z",
+    "updated_at": "2026-01-30T16:32:59.006Z"
+  },
+  {
+    "id": "ec410ce5-32e0-4ea3-8d46-9263a572be97",
+    "dishName": "Ethnic Dish Example 26",
+    "price": "40.54",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 9,
+    "spiciness": 1,
+    "saltiness": 2,
+    "umami": 1,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 7",
+      "latitude": "31.0669",
+      "longitude": "-70.5995"
+    },
+    "created_at": "2025-05-01T17:05:12.426Z",
+    "updated_at": "2025-05-01T17:05:12.426Z"
+  },
+  {
+    "id": "210055d3-b426-4a42-b0e0-feb9f4f237d1",
+    "dishName": "Fast Food Dish Example 27",
+    "price": "20.41",
+    "restaurant": "Chipotle",
+    "sweetness": 0,
+    "spiciness": 7,
+    "saltiness": 1,
+    "umami": 7,
+    "mustTry": true,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 10",
+      "latitude": "41.7676",
+      "longitude": "-98.0176"
+    },
+    "created_at": "2025-09-24T22:19:45.981Z",
+    "updated_at": "2025-09-24T22:19:45.981Z"
+  },
+  {
+    "id": "4d894db5-2a1e-41e6-adc7-1b77805c3cb1",
+    "dishName": "Fast Food Dish Example 28",
+    "price": "13.41",
+    "restaurant": "McDonald's",
+    "sweetness": 6,
+    "spiciness": 6,
+    "saltiness": 6,
+    "umami": 2,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 3",
+      "latitude": "45.7140",
+      "longitude": "-70.7391"
+    },
+    "created_at": "2025-04-28T16:51:41.401Z",
+    "updated_at": "2025-04-28T16:51:41.401Z"
+  },
+  {
+    "id": "12909d1c-b0e5-405d-ba4a-047378c0ec5d",
+    "dishName": "Specialty Dish Example 29",
+    "price": "47.64",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 1,
+    "spiciness": 5,
+    "saltiness": 9,
+    "umami": 9,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 8",
+      "latitude": "26.4497",
+      "longitude": "-104.6709"
+    },
+    "created_at": "2025-10-27T17:14:00.624Z",
+    "updated_at": "2025-10-27T17:14:00.624Z"
+  },
+  {
+    "id": "be9fc871-c548-42ed-8ab5-50daad0e86ca",
+    "dishName": "Fast Food Dish Example 30",
+    "price": "29.19",
+    "restaurant": "Chipotle",
+    "sweetness": 10,
+    "spiciness": 4,
+    "saltiness": 8,
+    "umami": 2,
+    "mustTry": true,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 10",
+      "latitude": "41.5777",
+      "longitude": "-84.3692"
+    },
+    "created_at": "2025-03-29T13:29:02.156Z",
+    "updated_at": "2025-03-29T13:29:02.156Z"
+  },
+  {
+    "id": "763a8c9c-43ae-4bc9-801c-94b5bd0b8e57",
+    "dishName": "Ethnic Dish Example 31",
+    "price": "25.12",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 2,
+    "spiciness": 10,
+    "saltiness": 1,
+    "umami": 4,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 8",
+      "latitude": "34.5220",
+      "longitude": "-119.9449"
+    },
+    "created_at": "2025-09-26T22:26:17.354Z",
+    "updated_at": "2025-09-26T22:26:17.354Z"
+  },
+  {
+    "id": "fcbfcfd8-9c6b-4fa4-90f9-9afe3fcb120d",
+    "dishName": "Fast Food Dish Example 32",
+    "price": "14.78",
+    "restaurant": "Chipotle",
+    "sweetness": 8,
+    "spiciness": 0,
+    "saltiness": 7,
+    "umami": 7,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 1",
+      "latitude": "41.6578",
+      "longitude": "-77.1655"
+    },
+    "created_at": "2025-11-10T15:13:20.225Z",
+    "updated_at": "2025-11-10T15:13:20.225Z"
+  },
+  {
+    "id": "430eefa9-c01c-4019-86bf-7bae653ef6c7",
+    "dishName": "Specialty Dish Example 33",
+    "price": "7.97",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 1,
+    "spiciness": 9,
+    "saltiness": 1,
+    "umami": 10,
+    "mustTry": true,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 4",
+      "latitude": "47.5939",
+      "longitude": "-80.6311"
+    },
+    "created_at": "2026-01-19T01:08:03.037Z",
+    "updated_at": "2026-01-19T01:08:03.037Z"
+  },
+  {
+    "id": "5ddfc227-13b5-47c5-b1d2-ffd6857f44d1",
+    "dishName": "Fast Food Dish Example 34",
+    "price": "44.93",
+    "restaurant": "McDonald's",
+    "sweetness": 6,
+    "spiciness": 2,
+    "saltiness": 4,
+    "umami": 4,
+    "mustTry": true,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 3",
+      "latitude": "47.1791",
+      "longitude": "-121.6251"
+    },
+    "created_at": "2025-07-08T07:00:10.278Z",
+    "updated_at": "2025-07-08T07:00:10.278Z"
+  },
+  {
+    "id": "0bac628a-c1df-44b8-8527-06ec4132c303",
+    "dishName": "Coffee Dish Example 35",
+    "price": "16.58",
+    "restaurant": "Starbucks",
+    "sweetness": 3,
+    "spiciness": 10,
+    "saltiness": 9,
+    "umami": 0,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 7",
+      "latitude": "39.0561",
+      "longitude": "-78.5181"
+    },
+    "created_at": "2025-11-25T00:36:52.130Z",
+    "updated_at": "2025-11-25T00:36:52.130Z"
+  },
+  {
+    "id": "aa6dddac-1608-4ce4-9a5d-c7b6b8764856",
+    "dishName": "Fast Food Dish Example 36",
+    "price": "44.04",
+    "restaurant": "McDonald's",
+    "sweetness": 4,
+    "spiciness": 8,
+    "saltiness": 4,
+    "umami": 10,
+    "mustTry": true,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 3",
+      "latitude": "29.0499",
+      "longitude": "-85.4580"
+    },
+    "created_at": "2025-02-05T18:35:29.276Z",
+    "updated_at": "2025-02-05T18:35:29.276Z"
+  },
+  {
+    "id": "914748f4-90cf-4179-a102-a0111df58ba4",
+    "dishName": "Casual Dish Example 37",
+    "price": "5.25",
+    "restaurant": "Olive Garden",
+    "sweetness": 7,
+    "spiciness": 4,
+    "saltiness": 3,
+    "umami": 1,
+    "mustTry": true,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 1",
+      "latitude": "32.2479",
+      "longitude": "-120.8093"
+    },
+    "created_at": "2025-07-26T00:48:10.357Z",
+    "updated_at": "2025-07-26T00:48:10.357Z"
+  },
+  {
+    "id": "2dbf25cd-f66d-46b1-a31a-8499d854ec5f",
+    "dishName": "Specialty Dish Example 38",
+    "price": "17.92",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 5,
+    "spiciness": 5,
+    "saltiness": 2,
+    "umami": 9,
+    "mustTry": true,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 1",
+      "latitude": "26.5485",
+      "longitude": "-91.8552"
+    },
+    "created_at": "2025-05-10T02:56:51.115Z",
+    "updated_at": "2025-05-10T02:56:51.115Z"
+  },
+  {
+    "id": "978fc35f-c380-478e-8247-ee483aa138fe",
+    "dishName": "Coffee Dish Example 39",
+    "price": "21.56",
+    "restaurant": "Starbucks",
+    "sweetness": 6,
+    "spiciness": 9,
+    "saltiness": 4,
+    "umami": 6,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 7",
+      "latitude": "44.4283",
+      "longitude": "-96.0507"
+    },
+    "created_at": "2025-07-02T15:53:40.010Z",
+    "updated_at": "2025-07-02T15:53:40.010Z"
+  },
+  {
+    "id": "a50956bd-1341-4ab1-91f2-58dae7cd4dca",
+    "dishName": "Coffee Dish Example 40",
+    "price": "31.70",
+    "restaurant": "Starbucks",
+    "sweetness": 9,
+    "spiciness": 6,
+    "saltiness": 0,
+    "umami": 5,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 8",
+      "latitude": "42.1236",
+      "longitude": "-123.1715"
+    },
+    "created_at": "2025-12-12T04:07:14.041Z",
+    "updated_at": "2025-12-12T04:07:14.041Z"
+  },
+  {
+    "id": "8f93a8aa-8123-420d-a53b-b0468f3511e6",
+    "dishName": "Fast Food Dish Example 41",
+    "price": "25.60",
+    "restaurant": "Chipotle",
+    "sweetness": 4,
+    "spiciness": 6,
+    "saltiness": 7,
+    "umami": 4,
+    "mustTry": true,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 6",
+      "latitude": "27.5342",
+      "longitude": "-92.6053"
+    },
+    "created_at": "2025-02-06T17:11:45.274Z",
+    "updated_at": "2025-02-06T17:11:45.274Z"
+  },
+  {
+    "id": "41632e84-d268-4508-9e53-3bc14c1d3290",
+    "dishName": "Fast Food Dish Example 42",
+    "price": "44.47",
+    "restaurant": "McDonald's",
+    "sweetness": 10,
+    "spiciness": 6,
+    "saltiness": 0,
+    "umami": 2,
+    "mustTry": true,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 9",
+      "latitude": "42.6016",
+      "longitude": "-109.2666"
+    },
+    "created_at": "2025-03-25T13:46:32.197Z",
+    "updated_at": "2025-03-25T13:46:32.197Z"
+  },
+  {
+    "id": "205528f5-f1ba-43b6-99c6-aaf7735c167b",
+    "dishName": "Fast Food Dish Example 43",
+    "price": "20.22",
+    "restaurant": "Chipotle",
+    "sweetness": 1,
+    "spiciness": 1,
+    "saltiness": 10,
+    "umami": 1,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 10",
+      "latitude": "34.3149",
+      "longitude": "-88.5047"
+    },
+    "created_at": "2025-12-28T22:20:19.371Z",
+    "updated_at": "2025-12-28T22:20:19.371Z"
+  },
+  {
+    "id": "a8fad861-da67-477b-b7a8-8a77d5584c4d",
+    "dishName": "Casual Dish Example 44",
+    "price": "42.80",
+    "restaurant": "Olive Garden",
+    "sweetness": 10,
+    "spiciness": 9,
+    "saltiness": 3,
+    "umami": 1,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 3",
+      "latitude": "37.5436",
+      "longitude": "-94.5103"
+    },
+    "created_at": "2025-05-25T15:30:19.198Z",
+    "updated_at": "2025-05-25T15:30:19.198Z"
+  },
+  {
+    "id": "43dcd8d6-3200-48b8-9dc8-4c09d8a3e817",
+    "dishName": "Specialty Dish Example 45",
+    "price": "29.39",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 9,
+    "spiciness": 3,
+    "saltiness": 5,
+    "umami": 2,
+    "mustTry": true,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 7",
+      "latitude": "46.8509",
+      "longitude": "-73.8042"
+    },
+    "created_at": "2025-07-11T07:12:01.923Z",
+    "updated_at": "2025-07-11T07:12:01.923Z"
+  },
+  {
+    "id": "267e1bd3-cbab-4288-aa7a-d249d968981a",
+    "dishName": "Ethnic Dish Example 46",
+    "price": "26.68",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 6,
+    "spiciness": 2,
+    "saltiness": 5,
+    "umami": 7,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 5",
+      "latitude": "29.6596",
+      "longitude": "-94.3303"
+    },
+    "created_at": "2026-01-07T03:50:22.700Z",
+    "updated_at": "2026-01-07T03:50:22.700Z"
+  },
+  {
+    "id": "4680ffbd-8f80-4213-912b-c0dcf76db819",
+    "dishName": "Ethnic Dish Example 47",
+    "price": "25.37",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 1,
+    "spiciness": 6,
+    "saltiness": 1,
+    "umami": 6,
+    "mustTry": true,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 4",
+      "latitude": "40.4135",
+      "longitude": "-113.3571"
+    },
+    "created_at": "2025-10-30T12:56:54.239Z",
+    "updated_at": "2025-10-30T12:56:54.239Z"
+  },
+  {
+    "id": "19907433-31fd-4572-8fe2-90a6920e31bd",
+    "dishName": "Fast Food Dish Example 48",
+    "price": "39.98",
+    "restaurant": "Chipotle",
+    "sweetness": 3,
+    "spiciness": 2,
+    "saltiness": 6,
+    "umami": 4,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 9",
+      "latitude": "47.4258",
+      "longitude": "-103.5535"
+    },
+    "created_at": "2025-08-24T04:13:43.741Z",
+    "updated_at": "2025-08-24T04:13:43.741Z"
+  },
+  {
+    "id": "40b16c9c-990b-4641-913e-246a7197a77c",
+    "dishName": "Fast Food Dish Example 49",
+    "price": "31.18",
+    "restaurant": "McDonald's",
+    "sweetness": 1,
+    "spiciness": 4,
+    "saltiness": 3,
+    "umami": 1,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 3",
+      "latitude": "32.4380",
+      "longitude": "-107.6134"
+    },
+    "created_at": "2025-01-12T16:14:38.652Z",
+    "updated_at": "2025-01-12T16:14:38.652Z"
+  },
+  {
+    "id": "167ed46d-0dec-4240-93aa-c3e32a68a251",
+    "dishName": "Ethnic Dish Example 50",
+    "price": "49.77",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 7,
+    "spiciness": 7,
+    "saltiness": 6,
+    "umami": 8,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 2",
+      "latitude": "31.9158",
+      "longitude": "-115.4571"
+    },
+    "created_at": "2026-01-16T15:35:15.759Z",
+    "updated_at": "2026-01-16T15:35:15.759Z"
+  },
+  {
+    "id": "6b09ba90-8633-40fd-b6f8-699adff43bb0",
+    "dishName": "Specialty Dish Example 51",
+    "price": "9.77",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 1,
+    "spiciness": 2,
+    "saltiness": 8,
+    "umami": 3,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 8",
+      "latitude": "32.0706",
+      "longitude": "-85.8352"
+    },
+    "created_at": "2025-09-11T10:43:06.729Z",
+    "updated_at": "2025-09-11T10:43:06.729Z"
+  },
+  {
+    "id": "4d037cbb-187e-457c-b547-390fec7898e2",
+    "dishName": "Fast Food Dish Example 52",
+    "price": "39.47",
+    "restaurant": "McDonald's",
+    "sweetness": 8,
+    "spiciness": 6,
+    "saltiness": 9,
+    "umami": 0,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 7",
+      "latitude": "30.0478",
+      "longitude": "-114.1478"
+    },
+    "created_at": "2025-01-27T20:15:43.410Z",
+    "updated_at": "2025-01-27T20:15:43.410Z"
+  },
+  {
+    "id": "412a467f-3f8b-41f3-afc6-fe7a3f3023a8",
+    "dishName": "Coffee Dish Example 53",
+    "price": "43.72",
+    "restaurant": "Starbucks",
+    "sweetness": 6,
+    "spiciness": 2,
+    "saltiness": 5,
+    "umami": 7,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 5",
+      "latitude": "46.8742",
+      "longitude": "-68.0393"
+    },
+    "created_at": "2025-08-28T21:00:35.777Z",
+    "updated_at": "2025-08-28T21:00:35.777Z"
+  },
+  {
+    "id": "7adb9825-201d-4a15-ae2f-a7e6d3372dd9",
+    "dishName": "Specialty Dish Example 54",
+    "price": "9.98",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 1,
+    "spiciness": 0,
+    "saltiness": 8,
+    "umami": 8,
+    "mustTry": true,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 8",
+      "latitude": "40.9633",
+      "longitude": "-116.1428"
+    },
+    "created_at": "2025-10-02T10:14:09.253Z",
+    "updated_at": "2025-10-02T10:14:09.253Z"
+  },
+  {
+    "id": "c73bfb05-eb08-4899-88ab-bbd968c2079f",
+    "dishName": "Coffee Dish Example 55",
+    "price": "14.80",
+    "restaurant": "Starbucks",
+    "sweetness": 9,
+    "spiciness": 6,
+    "saltiness": 0,
+    "umami": 5,
+    "mustTry": true,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 3",
+      "latitude": "34.5063",
+      "longitude": "-108.4884"
+    },
+    "created_at": "2025-05-30T07:16:11.808Z",
+    "updated_at": "2025-05-30T07:16:11.808Z"
+  },
+  {
+    "id": "e2857116-0587-44a4-81cf-41cdd161e9dc",
+    "dishName": "Ethnic Dish Example 56",
+    "price": "31.95",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 2,
+    "spiciness": 3,
+    "saltiness": 3,
+    "umami": 3,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 1",
+      "latitude": "46.9234",
+      "longitude": "-70.8047"
+    },
+    "created_at": "2025-10-18T02:36:31.947Z",
+    "updated_at": "2025-10-18T02:36:31.947Z"
+  },
+  {
+    "id": "a7f0793c-1245-4627-bc55-4f48df29c203",
+    "dishName": "Casual Dish Example 57",
+    "price": "38.24",
+    "restaurant": "Olive Garden",
+    "sweetness": 1,
+    "spiciness": 9,
+    "saltiness": 3,
+    "umami": 1,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 10",
+      "latitude": "28.6898",
+      "longitude": "-104.5868"
+    },
+    "created_at": "2025-05-10T08:46:49.720Z",
+    "updated_at": "2025-05-10T08:46:49.720Z"
+  },
+  {
+    "id": "433ae524-1b78-487c-840a-b05a3f8f40b9",
+    "dishName": "Ethnic Dish Example 58",
+    "price": "38.57",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 3,
+    "spiciness": 3,
+    "saltiness": 7,
+    "umami": 1,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 8",
+      "latitude": "41.7296",
+      "longitude": "-113.0827"
+    },
+    "created_at": "2026-01-12T09:55:36.918Z",
+    "updated_at": "2026-01-12T09:55:36.918Z"
+  },
+  {
+    "id": "bfe96982-d5a4-4dbc-a457-a7c259709e7c",
+    "dishName": "Casual Dish Example 59",
+    "price": "12.85",
+    "restaurant": "Olive Garden",
+    "sweetness": 7,
+    "spiciness": 2,
+    "saltiness": 5,
+    "umami": 2,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 3",
+      "latitude": "24.2788",
+      "longitude": "-91.9517"
+    },
+    "created_at": "2025-12-22T19:17:22.185Z",
+    "updated_at": "2025-12-22T19:17:22.185Z"
+  },
+  {
+    "id": "c01da205-4451-470d-8e8b-535b4eeb0f9e",
+    "dishName": "Casual Dish Example 60",
+    "price": "16.23",
+    "restaurant": "Olive Garden",
+    "sweetness": 0,
+    "spiciness": 10,
+    "saltiness": 4,
+    "umami": 5,
+    "mustTry": true,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 9",
+      "latitude": "38.1911",
+      "longitude": "-72.6495"
+    },
+    "created_at": "2025-11-10T19:56:36.210Z",
+    "updated_at": "2025-11-10T19:56:36.210Z"
+  },
+  {
+    "id": "d04f116e-b4ea-4e41-b902-5d0b37aa1030",
+    "dishName": "Coffee Dish Example 61",
+    "price": "29.82",
+    "restaurant": "Starbucks",
+    "sweetness": 0,
+    "spiciness": 6,
+    "saltiness": 6,
+    "umami": 5,
+    "mustTry": true,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 5",
+      "latitude": "29.1203",
+      "longitude": "-112.4413"
+    },
+    "created_at": "2025-03-11T11:28:41.547Z",
+    "updated_at": "2025-03-11T11:28:41.547Z"
+  },
+  {
+    "id": "491f705c-0e0c-4000-ae61-fa7324a66b13",
+    "dishName": "Specialty Dish Example 62",
+    "price": "47.17",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 2,
+    "spiciness": 1,
+    "saltiness": 9,
+    "umami": 6,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 2",
+      "latitude": "33.7624",
+      "longitude": "-71.4756"
+    },
+    "created_at": "2025-02-14T09:52:01.627Z",
+    "updated_at": "2025-02-14T09:52:01.627Z"
+  },
+  {
+    "id": "cfdea85b-96b7-4249-8c7d-854850881066",
+    "dishName": "Fast Food Dish Example 63",
+    "price": "43.86",
+    "restaurant": "McDonald's",
+    "sweetness": 0,
+    "spiciness": 6,
+    "saltiness": 1,
+    "umami": 9,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 2",
+      "latitude": "39.9111",
+      "longitude": "-74.1327"
+    },
+    "created_at": "2026-01-20T05:56:33.577Z",
+    "updated_at": "2026-01-20T05:56:33.577Z"
+  },
+  {
+    "id": "2fba45a4-8726-4387-a444-1aeddf71aed6",
+    "dishName": "Ethnic Dish Example 64",
+    "price": "42.05",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 2,
+    "spiciness": 2,
+    "saltiness": 2,
+    "umami": 5,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 8",
+      "latitude": "40.1092",
+      "longitude": "-120.6544"
+    },
+    "created_at": "2025-09-02T17:14:59.356Z",
+    "updated_at": "2025-09-02T17:14:59.356Z"
+  },
+  {
+    "id": "a1f6a7e2-ee08-4ac2-b2b0-1e81cf691164",
+    "dishName": "Specialty Dish Example 65",
+    "price": "10.99",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 4,
+    "spiciness": 1,
+    "saltiness": 8,
+    "umami": 4,
+    "mustTry": true,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 4",
+      "latitude": "32.8287",
+      "longitude": "-86.2159"
+    },
+    "created_at": "2026-01-17T12:30:40.947Z",
+    "updated_at": "2026-01-17T12:30:40.947Z"
+  },
+  {
+    "id": "92bc331c-4ea0-4a4a-ba9b-d9f1b21144d4",
+    "dishName": "Coffee Dish Example 66",
+    "price": "6.44",
+    "restaurant": "Starbucks",
+    "sweetness": 1,
+    "spiciness": 9,
+    "saltiness": 5,
+    "umami": 5,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 1",
+      "latitude": "41.5168",
+      "longitude": "-75.7192"
+    },
+    "created_at": "2025-10-21T15:36:55.836Z",
+    "updated_at": "2025-10-21T15:36:55.836Z"
+  },
+  {
+    "id": "cb514824-5ca5-4a06-9177-4f74b7aafbcf",
+    "dishName": "Specialty Dish Example 67",
+    "price": "33.25",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 9,
+    "spiciness": 9,
+    "saltiness": 2,
+    "umami": 1,
+    "mustTry": true,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 4",
+      "latitude": "37.7295",
+      "longitude": "-81.6137"
+    },
+    "created_at": "2025-01-26T13:14:33.797Z",
+    "updated_at": "2025-01-26T13:14:33.797Z"
+  },
+  {
+    "id": "56c6a911-86a8-448b-a9d2-93fbdb3360a5",
+    "dishName": "Specialty Dish Example 68",
+    "price": "45.05",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 9,
+    "spiciness": 0,
+    "saltiness": 6,
+    "umami": 5,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 6",
+      "latitude": "48.8422",
+      "longitude": "-87.0452"
+    },
+    "created_at": "2025-04-01T11:08:24.417Z",
+    "updated_at": "2025-04-01T11:08:24.417Z"
+  },
+  {
+    "id": "2202402b-ee78-4179-b108-6fd84cfa37af",
+    "dishName": "Coffee Dish Example 69",
+    "price": "25.94",
+    "restaurant": "Starbucks",
+    "sweetness": 6,
+    "spiciness": 5,
+    "saltiness": 9,
+    "umami": 10,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 2",
+      "latitude": "28.5614",
+      "longitude": "-84.6129"
+    },
+    "created_at": "2025-02-19T11:10:30.606Z",
+    "updated_at": "2025-02-19T11:10:30.606Z"
+  },
+  {
+    "id": "bd487f44-da77-4032-b33c-2772fd6023d2",
+    "dishName": "Ethnic Dish Example 70",
+    "price": "45.84",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 6,
+    "spiciness": 3,
+    "saltiness": 9,
+    "umami": 10,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 8",
+      "latitude": "40.4361",
+      "longitude": "-85.4882"
+    },
+    "created_at": "2025-02-13T00:51:43.531Z",
+    "updated_at": "2025-02-13T00:51:43.531Z"
+  },
+  {
+    "id": "d9845d59-b865-45f1-8b4e-63492ac328e3",
+    "dishName": "Specialty Dish Example 71",
+    "price": "46.67",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 0,
+    "spiciness": 1,
+    "saltiness": 9,
+    "umami": 10,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 5",
+      "latitude": "27.8390",
+      "longitude": "-74.7487"
+    },
+    "created_at": "2025-10-17T20:05:12.844Z",
+    "updated_at": "2025-10-17T20:05:12.844Z"
+  },
+  {
+    "id": "8df81c4c-f4a5-4f6b-9382-ac8b41ec6895",
+    "dishName": "Casual Dish Example 72",
+    "price": "40.66",
+    "restaurant": "Olive Garden",
+    "sweetness": 6,
+    "spiciness": 5,
+    "saltiness": 3,
+    "umami": 2,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 10",
+      "latitude": "30.0740",
+      "longitude": "-95.5381"
+    },
+    "created_at": "2025-08-22T01:41:16.430Z",
+    "updated_at": "2025-08-22T01:41:16.430Z"
+  },
+  {
+    "id": "00340684-c1b9-4d26-aaa9-b210368cbc22",
+    "dishName": "Specialty Dish Example 73",
+    "price": "42.96",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 8,
+    "spiciness": 6,
+    "saltiness": 4,
+    "umami": 5,
+    "mustTry": true,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 4",
+      "latitude": "25.8250",
+      "longitude": "-109.8234"
+    },
+    "created_at": "2026-01-19T14:49:17.533Z",
+    "updated_at": "2026-01-19T14:49:17.533Z"
+  },
+  {
+    "id": "65c7a6fb-b444-4e48-afc6-37f56e34b1b6",
+    "dishName": "Coffee Dish Example 74",
+    "price": "38.78",
+    "restaurant": "Starbucks",
+    "sweetness": 3,
+    "spiciness": 10,
+    "saltiness": 1,
+    "umami": 5,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 3",
+      "latitude": "45.1195",
+      "longitude": "-86.3614"
+    },
+    "created_at": "2025-08-01T03:20:02.508Z",
+    "updated_at": "2025-08-01T03:20:02.508Z"
+  },
+  {
+    "id": "e4b0eeb1-2a3a-4363-8198-1d7711b750bb",
+    "dishName": "Fast Food Dish Example 75",
+    "price": "9.96",
+    "restaurant": "McDonald's",
+    "sweetness": 2,
+    "spiciness": 6,
+    "saltiness": 9,
+    "umami": 2,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 6",
+      "latitude": "41.7710",
+      "longitude": "-77.0250"
+    },
+    "created_at": "2025-06-12T17:32:10.014Z",
+    "updated_at": "2025-06-12T17:32:10.014Z"
+  },
+  {
+    "id": "8c829051-b88d-43b1-b662-69258facb327",
+    "dishName": "Ethnic Dish Example 76",
+    "price": "41.62",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 0,
+    "spiciness": 0,
+    "saltiness": 5,
+    "umami": 1,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 10",
+      "latitude": "47.3069",
+      "longitude": "-69.1081"
+    },
+    "created_at": "2025-04-10T03:02:15.658Z",
+    "updated_at": "2025-04-10T03:02:15.658Z"
+  },
+  {
+    "id": "28c22b7f-7e68-4805-88d5-8adca4fba555",
+    "dishName": "Ethnic Dish Example 77",
+    "price": "11.30",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 4,
+    "spiciness": 2,
+    "saltiness": 1,
+    "umami": 3,
+    "mustTry": true,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 5",
+      "latitude": "29.5953",
+      "longitude": "-118.5052"
+    },
+    "created_at": "2025-11-18T00:14:50.690Z",
+    "updated_at": "2025-11-18T00:14:50.690Z"
+  },
+  {
+    "id": "699da101-5509-4bfc-a1e8-a819bfb15785",
+    "dishName": "Casual Dish Example 78",
+    "price": "6.94",
+    "restaurant": "Olive Garden",
+    "sweetness": 5,
+    "spiciness": 0,
+    "saltiness": 1,
+    "umami": 7,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 2",
+      "latitude": "36.9864",
+      "longitude": "-77.3536"
+    },
+    "created_at": "2025-02-06T20:14:18.124Z",
+    "updated_at": "2025-02-06T20:14:18.124Z"
+  },
+  {
+    "id": "9b0132a3-5259-4778-9fe9-5f28f6b03810",
+    "dishName": "Ethnic Dish Example 79",
+    "price": "33.76",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 3,
+    "spiciness": 5,
+    "saltiness": 8,
+    "umami": 8,
+    "mustTry": true,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 7",
+      "latitude": "41.5617",
+      "longitude": "-76.1936"
+    },
+    "created_at": "2026-01-26T21:19:13.091Z",
+    "updated_at": "2026-01-26T21:19:13.091Z"
+  },
+  {
+    "id": "c6f27409-1653-4ac0-a5dc-a20da8134ac2",
+    "dishName": "Ethnic Dish Example 80",
+    "price": "22.37",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 3,
+    "spiciness": 7,
+    "saltiness": 9,
+    "umami": 2,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 4",
+      "latitude": "47.8078",
+      "longitude": "-98.1460"
+    },
+    "created_at": "2025-02-03T08:39:55.727Z",
+    "updated_at": "2025-02-03T08:39:55.727Z"
+  },
+  {
+    "id": "3caba554-1d27-4ebc-8e9d-f68f75c059c8",
+    "dishName": "Ethnic Dish Example 81",
+    "price": "17.64",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 3,
+    "spiciness": 1,
+    "saltiness": 2,
+    "umami": 2,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 6",
+      "latitude": "35.0442",
+      "longitude": "-73.2704"
+    },
+    "created_at": "2025-11-29T08:57:33.078Z",
+    "updated_at": "2025-11-29T08:57:33.078Z"
+  },
+  {
+    "id": "c8a6bf8a-b8b4-411c-908b-2f6726d7d65f",
+    "dishName": "Specialty Dish Example 82",
+    "price": "16.10",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 5,
+    "spiciness": 1,
+    "saltiness": 9,
+    "umami": 1,
+    "mustTry": true,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1551183053-bf01a1d81141?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 1",
+      "latitude": "37.7451",
+      "longitude": "-91.1206"
+    },
+    "created_at": "2025-09-24T20:21:24.864Z",
+    "updated_at": "2025-09-24T20:21:24.864Z"
+  },
+  {
+    "id": "1f548b0b-786b-4520-a3a4-178d38516294",
+    "dishName": "Fast Food Dish Example 83",
+    "price": "35.98",
+    "restaurant": "Chipotle",
+    "sweetness": 2,
+    "spiciness": 0,
+    "saltiness": 1,
+    "umami": 1,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 3",
+      "latitude": "42.9445",
+      "longitude": "-110.1026"
+    },
+    "created_at": "2025-09-11T04:04:39.844Z",
+    "updated_at": "2025-09-11T04:04:39.844Z"
+  },
+  {
+    "id": "edfabe74-f2b7-4944-830e-2f4c6eb9080b",
+    "dishName": "Specialty Dish Example 84",
+    "price": "19.08",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 5,
+    "spiciness": 2,
+    "saltiness": 2,
+    "umami": 0,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 10",
+      "latitude": "24.7893",
+      "longitude": "-100.3099"
+    },
+    "created_at": "2025-09-02T16:40:56.154Z",
+    "updated_at": "2025-09-02T16:40:56.154Z"
+  },
+  {
+    "id": "c17cc354-7181-4798-9e2b-c963b66cd285",
+    "dishName": "Coffee Dish Example 85",
+    "price": "5.42",
+    "restaurant": "Starbucks",
+    "sweetness": 2,
+    "spiciness": 5,
+    "saltiness": 7,
+    "umami": 7,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 3",
+      "latitude": "48.8101",
+      "longitude": "-93.1755"
+    },
+    "created_at": "2026-01-19T02:58:20.148Z",
+    "updated_at": "2026-01-19T02:58:20.148Z"
+  },
+  {
+    "id": "38bd93ba-d43d-4fec-9bb2-f55006c14364",
+    "dishName": "Ethnic Dish Example 86",
+    "price": "22.01",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 6,
+    "spiciness": 2,
+    "saltiness": 1,
+    "umami": 4,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 5",
+      "latitude": "28.3226",
+      "longitude": "-120.4926"
+    },
+    "created_at": "2025-08-18T12:44:25.770Z",
+    "updated_at": "2025-08-18T12:44:25.770Z"
+  },
+  {
+    "id": "b1b5a360-69fd-4bda-92f8-0b18b6b07041",
+    "dishName": "Casual Dish Example 87",
+    "price": "44.21",
+    "restaurant": "Olive Garden",
+    "sweetness": 9,
+    "spiciness": 5,
+    "saltiness": 7,
+    "umami": 4,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 7",
+      "latitude": "44.3117",
+      "longitude": "-115.5275"
+    },
+    "created_at": "2026-01-16T15:57:07.800Z",
+    "updated_at": "2026-01-16T15:57:07.800Z"
+  },
+  {
+    "id": "a56effce-6015-43f2-b409-d8e6eceaa1f8",
+    "dishName": "Specialty Dish Example 88",
+    "price": "46.62",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 2,
+    "spiciness": 5,
+    "saltiness": 6,
+    "umami": 9,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 5",
+      "latitude": "26.7547",
+      "longitude": "-113.2670"
+    },
+    "created_at": "2025-08-11T10:43:48.952Z",
+    "updated_at": "2025-08-11T10:43:48.952Z"
+  },
+  {
+    "id": "3fdd5aed-8a8a-4428-b75c-bccd0566db9a",
+    "dishName": "Specialty Dish Example 89",
+    "price": "48.89",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 4,
+    "spiciness": 3,
+    "saltiness": 1,
+    "umami": 5,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 4",
+      "latitude": "45.9979",
+      "longitude": "-103.3695"
+    },
+    "created_at": "2025-01-14T01:58:26.089Z",
+    "updated_at": "2025-01-14T01:58:26.089Z"
+  },
+  {
+    "id": "95441645-abdf-4eea-a2a9-ab157b393651",
+    "dishName": "Casual Dish Example 90",
+    "price": "30.93",
+    "restaurant": "Olive Garden",
+    "sweetness": 8,
+    "spiciness": 1,
+    "saltiness": 5,
+    "umami": 1,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 1",
+      "latitude": "42.7961",
+      "longitude": "-80.0860"
+    },
+    "created_at": "2025-07-22T15:29:29.271Z",
+    "updated_at": "2025-07-22T15:29:29.271Z"
+  },
+  {
+    "id": "e351b43f-ccf4-48a0-a613-e5d1d3166305",
+    "dishName": "Coffee Dish Example 91",
+    "price": "49.83",
+    "restaurant": "Starbucks",
+    "sweetness": 6,
+    "spiciness": 10,
+    "saltiness": 10,
+    "umami": 3,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 7",
+      "latitude": "42.8751",
+      "longitude": "-72.5466"
+    },
+    "created_at": "2025-04-29T02:22:04.409Z",
+    "updated_at": "2025-04-29T02:22:04.409Z"
+  },
+  {
+    "id": "74e49b32-df63-4b97-b38f-41c687a1c5b6",
+    "dishName": "Ethnic Dish Example 92",
+    "price": "7.20",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 4,
+    "spiciness": 3,
+    "saltiness": 1,
+    "umami": 4,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 6",
+      "latitude": "38.3281",
+      "longitude": "-99.6161"
+    },
+    "created_at": "2025-07-30T20:57:28.217Z",
+    "updated_at": "2025-07-30T20:57:28.217Z"
+  },
+  {
+    "id": "e550ae35-1460-4e81-ba67-67b03399ba6f",
+    "dishName": "Casual Dish Example 93",
+    "price": "44.20",
+    "restaurant": "Olive Garden",
+    "sweetness": 1,
+    "spiciness": 7,
+    "saltiness": 8,
+    "umami": 7,
+    "mustTry": false,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 1",
+      "latitude": "44.8164",
+      "longitude": "-98.5141"
+    },
+    "created_at": "2025-09-01T23:14:39.700Z",
+    "updated_at": "2025-09-01T23:14:39.700Z"
+  },
+  {
+    "id": "6b2d3d31-b53f-46f3-a018-f0904b92478a",
+    "dishName": "Fast Food Dish Example 94",
+    "price": "41.78",
+    "restaurant": "McDonald's",
+    "sweetness": 7,
+    "spiciness": 7,
+    "saltiness": 4,
+    "umami": 5,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 5",
+      "latitude": "36.0523",
+      "longitude": "-113.2646"
+    },
+    "created_at": "2025-07-23T09:32:47.977Z",
+    "updated_at": "2025-07-23T09:32:47.977Z"
+  },
+  {
+    "id": "8d1847cb-c521-4882-ad80-c3c34ad14831",
+    "dishName": "Fast Food Dish Example 95",
+    "price": "41.83",
+    "restaurant": "McDonald's",
+    "sweetness": 10,
+    "spiciness": 6,
+    "saltiness": 2,
+    "umami": 2,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 9",
+      "latitude": "47.7358",
+      "longitude": "-123.1762"
+    },
+    "created_at": "2025-06-30T04:04:05.479Z",
+    "updated_at": "2025-06-30T04:04:05.479Z"
+  },
+  {
+    "id": "599d6796-e944-4a9f-b26b-8f9aa4ca8a03",
+    "dishName": "Fast Food Dish Example 96",
+    "price": "39.78",
+    "restaurant": "McDonald's",
+    "sweetness": 6,
+    "spiciness": 2,
+    "saltiness": 4,
+    "umami": 6,
+    "mustTry": true,
+    "recommend": false,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 7",
+      "latitude": "40.9017",
+      "longitude": "-112.3353"
+    },
+    "created_at": "2025-04-17T20:36:55.401Z",
+    "updated_at": "2025-04-17T20:36:55.401Z"
+  },
+  {
+    "id": "4d6e66e2-4874-41f6-9930-ffacf81b885c",
+    "dishName": "Specialty Dish Example 97",
+    "price": "27.78",
+    "restaurant": "Fine Dining Hub",
+    "sweetness": 3,
+    "spiciness": 3,
+    "saltiness": 7,
+    "umami": 5,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 1",
+      "latitude": "35.9699",
+      "longitude": "-97.0115"
+    },
+    "created_at": "2025-06-26T18:18:57.528Z",
+    "updated_at": "2025-06-26T18:18:57.528Z"
+  },
+  {
+    "id": "68a23420-18de-462e-9e19-36dbd53e1689",
+    "dishName": "Fast Food Dish Example 98",
+    "price": "36.85",
+    "restaurant": "Chipotle",
+    "sweetness": 10,
+    "spiciness": 10,
+    "saltiness": 2,
+    "umami": 3,
+    "mustTry": true,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 3",
+      "latitude": "46.5819",
+      "longitude": "-68.5014"
+    },
+    "created_at": "2025-03-28T23:56:38.117Z",
+    "updated_at": "2025-03-28T23:56:38.117Z"
+  },
+  {
+    "id": "1c2334fb-c0ba-40a8-8f50-1d9f559bfe08",
+    "dishName": "Ethnic Dish Example 99",
+    "price": "29.42",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 5,
+    "spiciness": 6,
+    "saltiness": 6,
+    "umami": 8,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1598511757337-fe2cafc31da0?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 4",
+      "latitude": "26.2920",
+      "longitude": "-76.3923"
+    },
+    "created_at": "2025-06-25T03:34:35.567Z",
+    "updated_at": "2025-06-25T03:34:35.567Z"
+  },
+  {
+    "id": "40fb526b-b357-42fc-bd34-b4d1ac097459",
+    "dishName": "Ethnic Dish Example 100",
+    "price": "29.37",
+    "restaurant": "Sakura Sushi",
+    "sweetness": 10,
+    "spiciness": 5,
+    "saltiness": 8,
+    "umami": 0,
+    "mustTry": false,
+    "recommend": true,
+    "image": "https://images.unsplash.com/photo-1512132411229-c30391241dd8?q=80&w=400&h=300",
+    "location": {
+      "name": "City Location 3",
+      "latitude": "25.6445",
+      "longitude": "-75.1786"
+    },
+    "created_at": "2026-01-03T23:45:31.518Z",
+    "updated_at": "2026-01-03T23:45:31.518Z"
+  }
+]
